@@ -1,32 +1,42 @@
-
+import sqlite3
 from datetime import date
 
 class operacionesbasedatos:
 
     def __init__(self):
 
-        pass
+        self.db = db
+        self.dbcursor = dbcursor
+        self.conexion = conexion
+        self.usuario = usuario
+        self.nombre = nombre
+        self.apellido = apellido
+        self.sexo = sexo
+        self.telefono = telefono
+        self.password = password
+        self.dni = dni
+
 
     def conexion (self, db, dbcursor):
 
-        import sqlite3
+        
 
         #Crea conexion con base de datos, sino existe crea la base de datos "turnossede"
 
-        db = sqlite3.connect("usuarios.db")
-        dbcursor = db.cursor() # Es el cursor en la base de datos
+        self.db = sqlite3.connect("usuarios.db")
+        self.dbcursor = db.cursor() # Es el cursor en la base de datos
 
         #Crea la tabla de turnos y si ya existe, se conecta.
 
     def crearbaseytabla(self):
 
-        conexion(db, dbcursor)
+        self.conexion(db, dbcursor)
 
         #Intenta crear base de datos.
 
         try:
-            dbcursor.execute('''CREATE TABLE usuarios (Usuario text NOT NULL, Nombre text NOT NULL, Apellido text NOT NULL, Sexo text NOT NULL, telefono integer NOT NULL, Password text NOT NULL, DNI integer NOT NULL)''')
-            db.commit()
+            self.dbcursor.execute('''CREATE TABLE usuarios (Usuario text NOT NULL, Nombre text NOT NULL, Apellido text NOT NULL, Sexo text NOT NULL, telefono integer NOT NULL, Password text NOT NULL, DNI integer NOT NULL)''')
+            self.db.commit()
             print("Creacion de base de datos y tabla OK.")
 
         #Si ya existe confirma su conexion.
@@ -36,19 +46,19 @@ class operacionesbasedatos:
 
     def ingresarusuario(self, usuario, nombre, apellido, sexo, telefono, password, dni):
 
-        conexion(db, dbcursor)
+        self.conexion(db, dbcursor)
 
         '''
         Esto se modifica con ingresos del main windows
         '''
 
-        usuario = input("Usuario: ")
-        nombre = input("Ingrese su nombre: ")
-        apellido = input("Ingrese su apellido: ")
-        sexo = input("Ingrese su sexo: ")
-        telefono = int(input("Ingrese su numero de celular: "))
-        password = input("Ingrese su Password: ")
-        dni = int(input("Ingrese el DNI: "))
+        self.usuario = input("Usuario: ")
+        self.nombre = input("Ingrese su nombre: ")
+        self.apellido = input("Ingrese su apellido: ")
+        self.sexo = input("Ingrese su sexo: ")
+        self.telefono = int(input("Ingrese su numero de celular: "))
+        self.password = input("Ingrese su Password: ")
+        self.dni = int(input("Ingrese el DNI: "))
 
         dbcursor.execute(
             "INSERT INTO usuarios (usuario, nombre, apellido, sexo, telefono, password, dni) VALUES (?, ?, ?, ?, ?, ? ,?)",
@@ -61,18 +71,18 @@ class operacionesbasedatos:
 
     def borrar(self, usuario, password):
 
-        conexion(db, dbcursor)
+        self.conexion(db, dbcursor)
 
-        usuario = input("Ingrese su nombre: ")
-        password = input("Ingrese su apellido: ")
+        self.usuario = input("Ingrese su nombre: ")
+        self.password = input("Ingrese su apellido: ")
 
         try:
 
-            dbcursor.execute("DELETE FROM usuarios WHERE usuario =? and password =?",(usuario, password))
+            self.dbcursor.execute("DELETE FROM usuarios WHERE usuario =? and password =?",(usuario, password))
 
-            db.commit()
+            self.db.commit()
 
-            db.close()
+            self.db.close()
 
             print("Borrado exitoso.")
         
@@ -81,23 +91,23 @@ class operacionesbasedatos:
 
     def borrartodo(self):
 
-        conexion(db, dbcursor)
+        self.conexion(db, dbcursor)
 
-        dbcursor.execute("DROP TABLE usuarios")
+        self.dbcursor.execute("DROP TABLE usuarios")
 
-        db.close()
+        self.db.close()
 
         print("Borrado completo.")
 
     def buscardatos(self, usuario, password):
 
-        conexion(db, dbcursor)
+        self.conexion(db, dbcursor)
         
-        usuario = input("Ingrese el usuario: ")
-        password= input("Ingrese el contraseña: ")
+        self.usuario = input("Ingrese el usuario: ")
+        self.password= input("Ingrese el contraseña: ")
 
         try:
-            dbcursor.execute("SELECT * FROM usuarios WHERE usuario=? AND password =?", (usuario, password))
+            self.dbcursor.execute("SELECT * FROM usuarios WHERE usuario=? AND password =?", (usuario, password))
             busqueda = dbcursor.fetchone()
             if busqueda is not None:
                 print(f"Datops del usuario: {busqueda}")
@@ -106,7 +116,7 @@ class operacionesbasedatos:
         except:
             print("Ingrese un usuario y password valido.")
 
-            db.close()
+            self.db.close()
 
     
 
