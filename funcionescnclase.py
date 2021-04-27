@@ -5,16 +5,10 @@ class operacionesbasedatos:
 
     def __init__(self):
 
-        self.db = db
-        self.dbcursor = dbcursor
-        self.conexion = conexion
-        self.usuario = usuario
-        self.nombre = nombre
-        self.apellido = apellido
-        self.sexo = sexo
-        self.telefono = telefono
-        self.password = password
-        self.dni = dni
+        self.db = sqlite3.connect("database.db")
+        self.dbcursor = self.db.cursor()
+        #self.conexion = self.db.conexion()
+     
 
 
     def conexion (self, db, dbcursor):
@@ -30,7 +24,7 @@ class operacionesbasedatos:
 
     def crearbaseytabla(self):
 
-        self.conexion(db, dbcursor)
+       # self.conexion(db, dbcursor)
 
         #Intenta crear base de datos.
 
