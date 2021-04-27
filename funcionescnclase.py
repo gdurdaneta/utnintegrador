@@ -12,22 +12,14 @@ class operacionesbasedatos:
 
 
     def conexion (self, db, dbcursor):
-
-        
-
         #Crea conexion con base de datos, sino existe crea la base de datos "turnossede"
-
         self.db = sqlite3.connect("usuarios.db")
         self.dbcursor = db.cursor() # Es el cursor en la base de datos
-
         #Crea la tabla de turnos y si ya existe, se conecta.
 
     def crearbaseytabla(self):
-
-       # self.conexion(db, dbcursor)
-
+        # self.conexion(db, dbcursor)
         #Intenta crear base de datos.
-
         try:
             self.dbcursor.execute('''CREATE TABLE usuarios (Usuario text NOT NULL, Nombre text NOT NULL, Apellido text NOT NULL, Sexo text NOT NULL, telefono integer NOT NULL, Password text NOT NULL, DNI integer NOT NULL)''')
             self.db.commit()
