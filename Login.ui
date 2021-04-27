@@ -19,42 +19,42 @@
      <rect>
       <x>250</x>
       <y>460</y>
-      <width>140</width>
+      <width>144</width>
       <height>88</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
      <item row="0" column="0">
-      <widget class="QLabel" name="label_9">
+      <widget class="QLabel" name="Made_by">
        <property name="text">
         <string>Made by</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="Francisco_Bryndum">
        <property name="text">
         <string>Francrisco Bryndum</string>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_8">
+      <widget class="QLabel" name="Gerardo_Urdaneta">
        <property name="text">
         <string>Gerardo Urdaneta</string>
        </property>
       </widget>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="label_10">
+      <widget class="QLabel" name="UTN_e_Learning_2021">
        <property name="text">
-        <string>UTN e learning 2021</string>
+        <string>UTN e Learning 2021</string>
        </property>
       </widget>
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -67,36 +67,36 @@
      <item row="0" column="0" colspan="2">
       <layout class="QGridLayout" name="gridLayout">
        <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit_2"/>
+        <widget class="QLineEdit" name="Entry_Password"/>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="Texto_Password">
          <property name="text">
           <string>Password</string>
          </property>
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="Texto_Usuario">
          <property name="text">
           <string>Usuario</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="QLineEdit" name="Entry_Usuario"/>
        </item>
       </layout>
      </item>
      <item row="1" column="0">
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="Boton_Ingresar">
        <property name="text">
         <string>Ingresar</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="Boton_Crear">
        <property name="text">
         <string>Crear</string>
        </property>
