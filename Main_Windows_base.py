@@ -124,3 +124,5 @@ class Ui_MainWindow(object):
         self.pushButton_4.setText(_translate("MainWindow", "Consultar"))
         self.pushButton_5.setText(_translate("MainWindow", "Modificar"))
         self.pushButton_6.setText(_translate("MainWindow", "Eliminar"))
+
+Ui_MainWindow()
