@@ -103,3 +103,14 @@ class operacionesbasedatos:
             print("Ingrese un usuario y password valido.")
 
             self.db.close()
+
+    def buscarusuario(self):
+        self.conexion(db, cursor)
+        sql = "SELECT usuario FROM usuarios where usuario=?",(Entry_Usuario)
+        datos = cursor.execute(sql)
+
+    def buscarpassword(self):
+        self.conexion(db, cursor)
+        
+        sql = "SELECT password FROM usuarios where usuario=?",(Entry_Usuario)
+        datos = cursor.execute(sql)
