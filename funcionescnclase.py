@@ -10,7 +10,6 @@ class operacionesbasedatos:
         #self.conexion = self.db.conexion()
      
 
-
     def conexion (self, db, dbcursor):
         #Crea conexion con base de datos, sino existe crea la base de datos "turnossede"
         self.db = sqlite3.connect("usuarios.db")
@@ -96,7 +95,7 @@ class operacionesbasedatos:
             self.dbcursor.execute("SELECT * FROM usuarios WHERE usuario=? AND password =?", (usuario, password))
             busqueda = dbcursor.fetchone()
             if busqueda is not None:
-                print(f"Datops del usuario: {busqueda}")
+                print(f"Datos del usuario: {busqueda}")
             else:
                 print("No hay ningun turno con ese nombre.")
         except:
