@@ -72,6 +72,7 @@ class operacionesbasedatos:
             print("Borrado exitoso.")
         
         except:
+
             ("Convinacion de usuario y contraseña invalido.")
 
     def borrartodo(self):
@@ -97,7 +98,7 @@ class operacionesbasedatos:
             if busqueda is not None:
                 print(f"Datos del usuario: {busqueda}")
             else:
-                print("No hay ningun turno con ese nombre.")
+                print("Convinacion de usuario y contraseña invalido.")
         except:
             print("Ingrese un usuario y password valido.")
 
