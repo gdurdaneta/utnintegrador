@@ -17,7 +17,7 @@ class integrador(QtWidgets.QMainWindow):
     def validador(self):
         if buscarusuario == Entry_Usuario:
             if buscarpassword == Entry_Password:
-                Main_Windows_base()
+                self.mainbase()
             else:
                 print("password incorrecto")
         else:
