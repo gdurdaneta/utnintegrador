@@ -98,7 +98,23 @@ def modificacion (self):
     [5] - DNI
     """)
 
-    self.datomodificar = input("Ingrese el dato a modificar: ")
+    datomodificar = input("Ingrese el dato a modificar: ")
+
+    if datomodificar == 1:
+        print("Modifica nombre ")
+    elif datomodificar == 2:
+        print("modifica Apellido")
+    elif datomodificar == 3:
+        print("Modifica sexo") #para ser lgbtqwerty friendly
+    elif datomodificar == 4:
+        print("Modifica telefono")
+    elif datomodificar == 5 :
+        print("Modifica DNI")
+    else:
+        print("ha elegido una opcion invalida")
+
+
+    
 
 def borrado ():
 
