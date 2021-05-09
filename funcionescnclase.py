@@ -77,13 +77,23 @@ class operacionesbasedatos:
 
     def borrartodo(self):
 
-        self.conexion(db, dbcursor)
+        ordenborrartodo = input("¿Seguro que quiere borrar todo? S/N: \n")
 
-        self.dbcursor.execute("DROP TABLE usuarios")
+        if ordenborrartodo == "S" or ordenborrartodo == "s":        
 
-        self.db.close()
+            self.conexion(db, dbcursor)
 
-        print("Borrado completo.")
+            self.dbcursor.execute("DROP TABLE usuarios")
+
+            self.db.close()
+
+            print("Base de datos eliminada.")
+
+        elif ordenborrartodo == "N" or ordenborrartodo == "n":
+            print("La base de datos no se elimino.")
+
+        else:
+            print("Ingreso invalido.")
 
     def buscardatos(self, usuario, password):
 
@@ -103,6 +113,30 @@ class operacionesbasedatos:
             print("Ingrese un usuario y password valido.")
 
             self.db.close()
+
+    def modificarusuario (self,usuario, password):
+
+        self.conexion(db, dbcursor)
+        
+        self.usuario = input("Ingrese el usuario: ")
+        self.password= input("Ingrese el contraseña: ")
+
+        try:
+            self.dbcursor.execute("SELECT * FROM usuarios WHERE usuario=? AND password =?", (usuario, password))
+            busqueda = dbcursor.fetchone()
+            if busqueda is not None:
+
+                self.dbcursor.execute("UPDATE usuarios SET {variablemodificar} =? WHERE usuario =? AND password =?", (nuevodato,usuario,password))
+
+                print("Modificacion realizada con exito.")
+
+            else:
+
+                print("Convinación de usuario y contraseña incorrecta.")
+
+        except:
+
+            print("Ingrese una convinación valida.")
 
     
 

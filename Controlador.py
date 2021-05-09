@@ -1,5 +1,7 @@
 from funcionescnclase import operacionesbasedatos
 
+basedatos = funcionescnclase.operacionesbasedatos()
+
 class Inicio ():
 
     def __init__(self):
@@ -53,6 +55,12 @@ def ingreso (self):
 
             #Conexion con funciones con clase, buscar datos en base. Cambio self contador = 0 para cortar area de acceso usuarios.
 
+            basedatos.Conexion()
+
+            basedatos.crearbaseytabla()
+
+            base.buscardatos()
+
             self.contador = 0
 
             print("Acceso correcto!.")
@@ -64,7 +72,7 @@ def ingreso (self):
             self.contador -= 1
 
             print("""Convinacion de usuario y contraseña invalido. 
-            Le quedan {Self.contador} intentos.
+            Le quedan {self.contador} intentos.
             """)
 
 def creacion (self):
@@ -81,6 +89,8 @@ def creacion (self):
 
     #Conexion con funciones con clase, crear usuario.
 
+    basedatos.ingresarusuario()
+
 def modificacion (self):
 
     print("Menu de modificacion de usuarios: \n")
@@ -96,27 +106,60 @@ def modificacion (self):
     [3] - Sexo
     [4] - Telefono
     [5] - DNI
+    [6] - Salir
     """)
 
     datomodificar = input("Ingrese el dato a modificar: ")
 
+    variablemodificar = ""
+    nuevodato = ""
+
     if datomodificar == 1:
-        print("Modifica nombre ")
+        
+        variablemodificar = "nombre"
+
+        nuevodato = input("Ingrese el nombre: ")
+
     elif datomodificar == 2:
-        print("modifica Apellido")
+        
+        variablemodificar = "apellido"
+
+        nuevodato = input("Ingrese el apellido: ")
+
     elif datomodificar == 3:
-        print("Modifica sexo") #para ser lgbtqwerty friendly
+
+        variablemodificar = "sexo"#para ser lgbtqwerty friendly
+
+        nuevodato = input("Ingrese el sexo: ")
+
     elif datomodificar == 4:
-        print("Modifica telefono")
+
+        variablemodificar = "telefono"
+
+        nuevodato = int(input("Ingrese el numero de telefono: "))
+
     elif datomodificar == 5 :
-        print("Modifica DNI")
+
+        variablemodificar = "DNI"
+
+        nuevodato = int(input("Ingrese el numero de DNI: "))
+
+    elif datomodificar == 6:
+
+        inicio(self)
+
     else:
-        print("ha elegido una opcion invalida")
+        
+        print("Ingrese una opcion valida.")
 
+        modificacion(self)
 
-    
 
 def borrado ():
+
+    estadoborrado = False
+
+    contadorborrado = 3
 
     print("""Menu de borrado de usuarios:
     
@@ -124,24 +167,34 @@ def borrado ():
 [2] - Borrado de base de datos.
     """)
 
-    self.opcionborrado = input("Ingrese la opcion deseada: ")
+    while estadoborrado == False and contadorborrado != 0:
 
-    if self.opcionborrado == 1:
+        self.opcionborrado = input("Ingrese la opcion deseada: ")
 
-        try:
-            #Conexion con borrado de base de datos.
-            print("Usuario borrado.")
-        
-        except:
-            print("Convinacion de usuario y contraseña invalido.")
+        if self.opcionborrado == 1:
 
-    elif self.opcionborrado == 2:
+            try:
 
-        print("Base de datos borrada.")
+                #Conexion con borrado de base de datos.
+                print("Usuario borrado.")
 
-        #Conexon con borrado total de base de datos.
+                estadoborrado == True
+            
+            except:
+                print("Convinacion de usuario y contraseña invalido.")
 
+                contadorborrado -= 1
 
+        elif self.opcionborrado == 2:
+            
+            basedatos.borrartodo()
+
+            estadoborrado == True
+
+        else:
+            print("Ingrese una opcion valida.\n")
+
+            #Conexon con borrado total de base de datos.
 
 iniciar = Inicio()
 iniciar.login(opcion = int(input("Ingrese la opcion deseada: ")))
