@@ -5,14 +5,17 @@ from funcionescnclase import operacionesbasedatos
 class Inicio ():
 
     def __init__(self):
+        self.usuario = "demo"
+        self.password = "demo"
 
+    def inicio():
         print("""Bienvenido, elija la opcion deseada:\n
-[1] - Ingreso de usuario:
-[2] - Crear usuario:
-[3] - Modificar:
-[4] - Borrar:
-[5] - Salir.        
-        """)
+            [1] - Ingreso de usuario:
+            [2] - Crear usuario:
+            [3] - Modificar:
+            [4] - Borrar:
+            [5] - Salir.        
+                    """)
 
         self.contador = 3
 
@@ -25,8 +28,10 @@ class Inicio ():
         if opcion in self.opciones:
             
             if opcion == 1:
+                self.usuario = input("ingrese su usuario")
+                self.password = input("ingrese su password")
                 operacionesbasedatos().buscardatos(usuario, password)
-                ingreso(self)
+                
 
             elif opcion == 2:
 
