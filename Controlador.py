@@ -1,6 +1,6 @@
 from funcionescnclase import operacionesbasedatos
 
-basedatos = funcionescnclase.operacionesbasedatos()
+
 
 class Inicio ():
 
@@ -25,20 +25,23 @@ class Inicio ():
         if opcion in self.opciones:
             
             if opcion == 1:
-                
+                operacionesbasedatos().buscardatos(usuario, password)
                 ingreso(self)
 
             elif opcion == 2:
 
                 creacion(self)
+                operacionesbasedatos().ingresarusuario(usuario, nombre, apellido, sexo, telefono, password, dni)
 
             elif opcion == 3:
 
                 modificacion (self)
+                operacionesbasedatos().modificarusuario(usuario, password)
 
             elif opcion == 4:
 
                 borrado(self)
+                operacionesbasedatos().borrar(usuario, password)
 
         else:
             print("Ingrese una opcion valida.")
