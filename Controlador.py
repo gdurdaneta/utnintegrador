@@ -7,8 +7,6 @@ class Inicio ():
     def __init__(self):
         self.usuario = "demo"
         self.password = "demo"
-
-    def inicio():
         print("""Bienvenido, elija la opcion deseada:\n
             [1] - Ingreso de usuario:
             [2] - Crear usuario:
@@ -23,6 +21,10 @@ class Inicio ():
             1,2,3,4,5
         }
         
+
+    def inicio():
+        pass
+    
     def login(self, opcion):
 
         if opcion in self.opciones:
