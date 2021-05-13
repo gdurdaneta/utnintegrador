@@ -31,7 +31,7 @@ class operacionesbasedatos:
 
     def ingresarusuario(self, usuario, nombre, apellido, sexo, telefono, password, dni):
 
-        self.conexion(db, dbcursor)
+        self.conexion(self.db, self.dbcursor)
 
         '''
         Esto se modifica con ingresos del main windows
@@ -45,18 +45,18 @@ class operacionesbasedatos:
         self.password = input("Ingrese su Password: ")
         self.dni = int(input("Ingrese el DNI: "))
 
-        dbcursor.execute(
+        self.dbcursor.execute(
             "INSERT INTO usuarios (usuario, nombre, apellido, sexo, telefono, password, dni) VALUES (?, ?, ?, ?, ?, ? ,?)",
             (usuario, nombre, apellido, sexo, telefono, password, dni))
-        db.commit()
+        self.db.commit()
 
-        db.close()
+        self.db.close()
         
         print("Carga OK.")
 
     def borrar(self, usuario, password):
 
-        self.conexion(db, dbcursor)
+        self.conexion(self.db, self.dbcursor)
 
         self.usuario = input("Ingrese su nombre: ")
         self.password = input("Ingrese su apellido: ")
@@ -81,7 +81,7 @@ class operacionesbasedatos:
 
         if ordenborrartodo == "S" or ordenborrartodo == "s":        
 
-            self.conexion(db, dbcursor)
+            self.conexion(self.db, self.dbcursor)
 
             self.dbcursor.execute("DROP TABLE usuarios")
 
@@ -97,14 +97,14 @@ class operacionesbasedatos:
 
     def buscardatos(self, usuario, password):
 
-        self.conexion(db, dbcursor)
+        self.conexion(self.db, self.dbcursor)
         
         self.usuario = input("Ingrese el usuario: ")
         self.password= input("Ingrese el contraseña: ")
 
         try:
             self.dbcursor.execute("SELECT * FROM usuarios WHERE usuario=? AND password =?", (usuario, password))
-            busqueda = dbcursor.fetchone()
+            busqueda = self.dbcursor.fetchone()
             if busqueda is not None:
                 print(f"Datos del usuario: {busqueda}")
             else:
@@ -116,14 +116,14 @@ class operacionesbasedatos:
 
     def modificarusuario (self,usuario, password):
 
-        self.conexion(db, dbcursor)
+        self.conexion(self.db, self.dbcursor)
         
         self.usuario = input("Ingrese el usuario: ")
         self.password= input("Ingrese el contraseña: ")
 
         try:
             self.dbcursor.execute("SELECT * FROM usuarios WHERE usuario=? AND password =?", (usuario, password))
-            busqueda = dbcursor.fetchone()
+            busqueda = self.dbcursor.fetchone()
             if busqueda is not None:
 
                 self.dbcursor.execute("UPDATE usuarios SET {variablemodificar} =? WHERE usuario =? AND password =?", (nuevodato,usuario,password))
