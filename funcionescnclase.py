@@ -7,10 +7,22 @@ class operacionesbasedatos:
 
         self.db = sqlite3.connect("database.db")
         self.dbcursor = self.db.cursor()
-        #self.conexion = self.db.conexion()
-     
+        try:
+            self.dbcursor.execute('''CREATE TABLE integrador (Usuario VARCHAR(10) NOT NULL, 
+                                                            Password VARCHAR(10) NOT NULL, 
+                                                            Nombre VARCHAR(20) NOT NULL, 
+                                                            Apellido VARCHAR(20) NOT NULL, 
+                                                            Dni INTENGER(10) NOT NULL, 
+                                                            Sexo VARCHAR(10) NOT NULL, 
+                                                            Telefono INTEGER(10) NOT NULL)''')
+            self.db.commit()
+            self.db.close()
+        except sqlite3.OperationalError:
+            print(sqlite3.OperationalError)
+        finally:
+            print("Base de datos conectada Correctamente")
 
-    def conexion (self, db, dbcursor):
+    def conexion (self, db):
         #Crea conexion con base de datos, sino existe crea la base de datos "turnossede"
         self.db = sqlite3.connect("usuarios.db")
         self.dbcursor = db.cursor() # Es el cursor en la base de datos
@@ -100,7 +112,7 @@ class operacionesbasedatos:
         self.conexion(self.db, self.dbcursor)
         
         self.usuario = input("Ingrese el usuario: ")
-        self.password= input("Ingrese el contraseña: ")
+        self.password = input("Ingrese el contraseña: ")
 
         try:
             self.dbcursor.execute("SELECT * FROM usuarios WHERE usuario=? AND password =?", (usuario, password))

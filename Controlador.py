@@ -7,6 +7,12 @@ class Inicio ():
     def __init__(self):
         self.usuario = "demo"
         self.password = "demo"
+        self.opcion = 0
+        self.contador = 3
+        self.opcionborrado = 0
+        
+    def login(self):
+
         print("""Bienvenido, elija la opcion deseada:\n
             [1] - Ingreso de usuario:
             [2] - Crear usuario:
@@ -14,41 +20,37 @@ class Inicio ():
             [4] - Borrar:
             [5] - Salir.        
                     """)
-
-        self.contador = 3
-
+        self.opcion = int(input("ingrese una opcion"))
         self.opciones = {
             1,2,3,4,5
         }
-        
 
-    def inicio():
-        pass
-    
-    def login(self, opcion):
-
-        if opcion in self.opciones:
+        if self.opcion in self.opciones:
             
-            if opcion == 1:
+            if self.opcion == 1:
 
                 ingreso(self)
-                operacionesbasedatos().buscardatos(usuario, password)
-                
+                try:
+                    operacionesbasedatos().buscardatos(self.usuario, self.password)
+                except:
+                    pass
+                finally:
+                    pass
 
-            elif opcion == 2:
+            elif self.opcion == 2:
 
                 creacion(self)
-                operacionesbasedatos().ingresarusuario(usuario, nombre, apellido, sexo, telefono, password, dni)
+                operacionesbasedatos().ingresarusuario(self.usuario, self.nombre, self.apellido, self.sexo, self.telefono, self.password, self.dni)
 
-            elif opcion == 3:
+            elif self.opcion == 3:
 
                 modificacion (self)
-                operacionesbasedatos().modificarusuario(usuario, password)
+                operacionesbasedatos().modificarusuario(self.usuario, self.password)
 
-            elif opcion == 4:
+            elif self.opcion == 4:
 
                 borrado(self)
-                operacionesbasedatos().borrar(usuario, password)
+                operacionesbasedatos().borrar(self.usuario, self.password)
 
         else:
             print("Ingrese una opcion valida.")
@@ -65,11 +67,11 @@ def ingreso (self):
 
             #Conexion con funciones con clase, buscar datos en base. Cambio self contador = 0 para cortar area de acceso usuarios.
 
-            basedatos.Conexion()
+            #self.basedatos.Conexion()
 
-            basedatos.crearbaseytabla()
+            #basedatos.crearbaseytabla()
 
-            base.buscardatos()
+            #base.buscardatos()
 
             self.contador = 0
 
@@ -82,13 +84,14 @@ def ingreso (self):
             self.contador -= 1
 
             print(F"""Convinacion de usuario y contraseña invalido. 
-Le quedan {self.contador} intentos.
-            """)
+                                Le quedan {self.contador} intentos.
+                    """)
+    
     if self.contador == 0:
 
         print("Acceso denegado.")
 
-        Inicio(self)
+        
 
 def creacion (self):
 
@@ -104,7 +107,7 @@ def creacion (self):
 
     #Conexion con funciones con clase, crear usuario.
 
-    basedatos.ingresarusuario()
+    #basedatos.ingresarusuario()
 
 def modificacion (self):
 
@@ -160,8 +163,8 @@ def modificacion (self):
         nuevodato = int(input("Ingrese el numero de DNI: "))
 
     elif datomodificar == 6:
-
-        inicio(self)
+        pass
+        #inicio(self)
 
     else:
         
@@ -184,9 +187,9 @@ def borrado ():
 
     while estadoborrado == False and contadorborrado != 0:
 
-        self.opcionborrado = input("Ingrese la opcion deseada: ")
+        opcionborrado = int(input("Ingrese la opcion deseada: "))
 
-        if self.opcionborrado == 1:
+        if opcionborrado == 1:
 
             try:
 
@@ -200,9 +203,9 @@ def borrado ():
 
                 contadorborrado -= 1
 
-        elif self.opcionborrado == 2:
+        elif opcionborrado == 2:
             
-            basedatos.borrartodo()
+            #basedatos.borrartodo()
 
             estadoborrado == True
 
@@ -211,8 +214,9 @@ def borrado ():
 
             #Conexon con borrado total de base de datos.
 
-iniciar = Inicio()
-iniciar.login(opcion = int(input("Ingrese la opcion deseada: ")))
+
+
+Inicio().login()
 
 
 
