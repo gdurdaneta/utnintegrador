@@ -7,6 +7,16 @@ class operacionesbasedatos:
 
         self.db = sqlite3.connect("database.db")
         self.dbcursor = self.db.cursor()
+
+    #def conexion (self, db):
+        #Crea conexion con base de datos, sino existe crea la base de datos "turnossede"
+        #self.db = sqlite3.connect("usuarios.db")
+        #self.dbcursor = db.cursor() # Es el cursor en la base de datos
+        #Crea la tabla de turnos y si ya existe, se conecta.
+
+
+    def crearbaseytabla2(self):
+        self.dbcursor.execute('CREATE TABLE PRUEBA (USUARIO VARCHAR(10), PASSWORD VARCHAR(10)')
         try:
             self.dbcursor.execute('''CREATE TABLE integrador (Usuario VARCHAR(10) NOT NULL, 
                                                             Password VARCHAR(10) NOT NULL, 
@@ -21,12 +31,6 @@ class operacionesbasedatos:
             print(sqlite3.OperationalError)
         finally:
             print("Base de datos conectada Correctamente")
-
-    def conexion (self, db):
-        #Crea conexion con base de datos, sino existe crea la base de datos "turnossede"
-        self.db = sqlite3.connect("usuarios.db")
-        self.dbcursor = db.cursor() # Es el cursor en la base de datos
-        #Crea la tabla de turnos y si ya existe, se conecta.
 
     def crearbaseytabla(self):
         # self.conexion(db, dbcursor)
@@ -150,12 +154,5 @@ class operacionesbasedatos:
 
             print("Ingrese una convinación valida.")
 
-    
 
-
-
-    
-    
-    
-    
-    
+operacionesbasedatos.crearbaseytabla2()
