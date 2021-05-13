@@ -16,7 +16,6 @@ class operacionesbasedatos:
 
 
     def crearbaseytabla2(self):
-        self.dbcursor.execute('CREATE TABLE PRUEBA (USUARIO VARCHAR(10), PASSWORD VARCHAR(10)')
         try:
             self.dbcursor.execute('''CREATE TABLE integrador (Usuario VARCHAR(10) NOT NULL, 
                                                             Password VARCHAR(10) NOT NULL, 
@@ -155,4 +154,4 @@ class operacionesbasedatos:
             print("Ingrese una convinación valida.")
 
 
-operacionesbasedatos.crearbaseytabla2()
+operacionesbasedatos().crearbaseytabla2()
