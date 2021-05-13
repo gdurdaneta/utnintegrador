@@ -30,8 +30,8 @@ class Inicio ():
         if opcion in self.opciones:
             
             if opcion == 1:
-                self.usuario = input("ingrese su usuario")
-                self.password = input("ingrese su password")
+
+                ingreso(self)
                 operacionesbasedatos().buscardatos(usuario, password)
                 
 
@@ -59,7 +59,7 @@ def ingreso (self):
 
         try: 
 
-            print("Menu de acceso a usuarios:\n")
+            print("\nMenu de acceso a usuarios:\n")
             self.usuario = input("Ingrese su usuario: ")
             self.password = input("Ingrese su contraseña: ")
 
@@ -81,13 +81,18 @@ def ingreso (self):
 
             self.contador -= 1
 
-            print("""Convinacion de usuario y contraseña invalido. 
-            Le quedan {self.contador} intentos.
+            print(F"""Convinacion de usuario y contraseña invalido. 
+Le quedan {self.contador} intentos.
             """)
+    if self.contador == 0:
+
+        print("Acceso denegado.")
+
+        Inicio(self)
 
 def creacion (self):
 
-    print("Menu de creacion de usuarios:\n")
+    print("\nMenu de creacion de usuarios:\n")
 
     self.usuario = input("Ingrese el usuario: ")
     self.nombre = input("Ingrese el nombre: ")
