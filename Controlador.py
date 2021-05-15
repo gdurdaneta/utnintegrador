@@ -1,15 +1,22 @@
-from funcionescnclase import operacionesbasedatos
-
+from funcionescnclase import OperacionesBaseDatos
 
 
 class Inicio ():
 
     def __init__(self):
-        self.usuario = "demo"
-        self.password = "demo"
+        self.usuario = "admin"
+        self.password = "admin"
+        self.nombre = "fran"
+        self.apellido = "bryndum"
+        self.dni = 111111
+        self.sexo = "M"
+        self.telefono = 11111111
         self.opcion = 0
         self.contador = 3
         self.opcionborrado = 0
+        self.datomodificar = ""
+        self.nuevodato = ""
+        self.variablemodificar = ""
         
     def login(self):
 
@@ -20,7 +27,7 @@ class Inicio ():
             [4] - Borrar:
             [5] - Salir.        
                     """)
-        self.opcion = int(input("ingrese una opcion"))
+        self.opcion = int(input("Ingrese una opcion: "))
         self.opciones = {
             1,2,3,4,5
         }
@@ -29,85 +36,31 @@ class Inicio ():
             
             if self.opcion == 1:
 
-                ingreso(self)
+                OperacionesBaseDatos().ingresousuarios(self.usuario, self.password)
+                
+                """
                 try:
                     operacionesbasedatos().buscardatos(self.usuario, self.password)
                 except:
                     pass
                 finally:
                     pass
-
+                """
             elif self.opcion == 2:
 
-                creacion(self)
-                operacionesbasedatos().ingresarusuario(self.usuario, self.nombre, self.apellido, self.sexo, self.telefono, self.password, self.dni)
+                OperacionesBaseDatos().creausuarios(self.usuario, self.nombre, self.apellido, self.sexo, self.telefono, self.password, self.dni)
 
             elif self.opcion == 3:
 
-                modificacion (self)
-                operacionesbasedatos().modificarusuario(self.usuario, self.password)
+                OperacionesBaseDatos().modificarusuario(self.usuario, self.password, self.datomodificar, self.nuevodato, self.variablemodificar)
 
             elif self.opcion == 4:
 
                 borrado(self)
-                operacionesbasedatos().borrar(self.usuario, self.password)
+                OperacionesBaseDatos().borrar(self.usuario, self.password)
 
         else:
-            print("Ingrese una opcion valida.")
-    
-def ingreso (self):
-
-    while self.contador != 0:
-
-        try: 
-
-            print("\nMenu de acceso a usuarios:\n")
-            self.usuario = input("Ingrese su usuario: ")
-            self.password = input("Ingrese su contraseña: ")
-
-            #Conexion con funciones con clase, buscar datos en base. Cambio self contador = 0 para cortar area de acceso usuarios.
-
-            #self.basedatos.Conexion()
-
-            #basedatos.crearbaseytabla()
-
-            #base.buscardatos()
-
-            self.contador = 0
-
-            print("Acceso correcto!.")
-
-        except:
-
-            #Si la convinacion es erronea, resto 1 contador, informo error y continuo solicitando ingreso.
-
-            self.contador -= 1
-
-            print(F"""Convinacion de usuario y contraseña invalido. 
-                                Le quedan {self.contador} intentos.
-                    """)
-    
-    if self.contador == 0:
-
-        print("Acceso denegado.")
-
-        
-
-def creacion (self):
-
-    print("\nMenu de creacion de usuarios:\n")
-
-    self.usuario = input("Ingrese el usuario: ")
-    self.nombre = input("Ingrese el nombre: ")
-    self.apellido = input("Ingrese el apellido: ")
-    self.sexo = input("Ingrese el sexo: ")
-    self.telefono = int(input("Ingrese el numero de celular: "))
-    self.password = input("Ingrese el password: ")
-    self.dni = int(input("Ingrese el DNI: "))
-
-    #Conexion con funciones con clase, crear usuario.
-
-    #basedatos.ingresarusuario()
+            print("Ingrese una opcion valida.")      
 
 def modificacion (self):
 
@@ -164,7 +117,7 @@ def modificacion (self):
 
     elif datomodificar == 6:
         pass
-        #inicio(self)
+        Inicio(self)
 
     else:
         

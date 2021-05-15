@@ -1,12 +1,12 @@
 import sqlite3
-from datetime import date
 
-class operacionesbasedatos:
+class OperacionesBaseDatos:
 
     def __init__(self):
 
         self.db = sqlite3.connect("database.db")
         self.dbcursor = self.db.cursor()
+        self.contador = 3
 
     #def conexion (self, db):
         #Crea conexion con base de datos, sino existe crea la base de datos "turnossede"
@@ -35,50 +35,46 @@ class operacionesbasedatos:
         # self.conexion(db, dbcursor)
         #Intenta crear base de datos.
         try:
-            self.dbcursor.execute('''CREATE TABLE usuarios (Usuario text NOT NULL, Nombre text NOT NULL, Apellido text NOT NULL, Sexo text NOT NULL, telefono integer NOT NULL, Password text NOT NULL, DNI integer NOT NULL)''')
+            self.dbcursor.execute('''CREATE TABLE usuarios (Usuario text NOT NULL, Password text NOT NULL, Nombre text NOT NULL, Apellido text NOT NULL, Sexo text NOT NULL, telefono integer NOT NULL, DNI integer NOT NULL)''')
             self.db.commit()
             print("Creacion de base de datos y tabla OK.")
 
         #Si ya existe confirma su conexion.
 
         except:
-            print("Conexion exitosa.")
+            print("\nConexion exitosa.\n")
 
-    def ingresarusuario(self, usuario, nombre, apellido, sexo, telefono, password, dni):
+    def creausuarios(self, usuario, nombre, apellido, sexo, telefono, password, dni):
 
-        self.conexion(self.db, self.dbcursor)
+        print("\nMenu para la creacion de usuarios:\n")
 
-        '''
-        Esto se modifica con ingresos del main windows
-        '''
-
-        self.usuario = input("Usuario: ")
-        self.nombre = input("Ingrese su nombre: ")
-        self.apellido = input("Ingrese su apellido: ")
-        self.sexo = input("Ingrese su sexo: ")
-        self.telefono = int(input("Ingrese su numero de celular: "))
-        self.password = input("Ingrese su Password: ")
+        self.usuario = input("Ingrese el usuario: ")
+        self.password = input("Ingrese el password: ")
+        self.nombre = input("Ingrese el nombre: ")
+        self.apellido = input("Ingrese el apellido: ")
+        self.sexo = input("Ingrese el sexo: ")
+        self.telefono = int(input("Ingrese el numero de celular: "))
         self.dni = int(input("Ingrese el DNI: "))
 
         self.dbcursor.execute(
-            "INSERT INTO usuarios (usuario, nombre, apellido, sexo, telefono, password, dni) VALUES (?, ?, ?, ?, ?, ? ,?)",
-            (usuario, nombre, apellido, sexo, telefono, password, dni))
+            "INSERT INTO integrador (Usuario, Password, Nombre, Apellido, Sexo, Telefono, Dni) VALUES (?, ?, ?, ?, ?, ? ,?)",
+            (self.usuario, self.password, self.nombre, self.apellido, self.sexo, self.telefono, self.dni))
         self.db.commit()
 
         self.db.close()
         
-        print("Carga OK.")
+        print("\n Se ha creado el usuario.\n")
 
     def borrar(self, usuario, password):
 
-        self.conexion(self.db, self.dbcursor)
+        print("\nMenu para borrar informacion:\n")
 
-        self.usuario = input("Ingrese su nombre: ")
-        self.password = input("Ingrese su apellido: ")
+        self.usuario = input("Ingrese el usuario: ")
+        self.password = input("Ingrese el password: ")
 
         try:
 
-            self.dbcursor.execute("DELETE FROM usuarios WHERE usuario =? and password =?",(usuario, password))
+            self.dbcursor.execute("DELETE FROM integrador WHERE usuario =? and password =?",(self.usuario, self.password))
 
             self.db.commit()
 
@@ -110,48 +106,113 @@ class operacionesbasedatos:
         else:
             print("Ingreso invalido.")
 
-    def buscardatos(self, usuario, password):
+    def ingresousuarios(self, usuario, password):
 
-        self.conexion(self.db, self.dbcursor)
+        print("\nMenu de acceso a usuarios:\n")
+        #self.conexion(self.db, self.dbcursor)
+
+        while self.contador != 0:
         
-        self.usuario = input("Ingrese el usuario: ")
-        self.password = input("Ingrese el contraseña: ")
+            self.usuario = input("Ingrese el usuario: ")
+            self.password = input("Ingrese el contraseña: ")
 
-        try:
-            self.dbcursor.execute("SELECT * FROM usuarios WHERE usuario=? AND password =?", (usuario, password))
-            busqueda = self.dbcursor.fetchone()
-            if busqueda is not None:
-                print(f"Datos del usuario: {busqueda}")
-            else:
-                print("Convinacion de usuario y contraseña invalido.")
-        except:
-            print("Ingrese un usuario y password valido.")
-
+            try:
+                self.dbcursor.execute("SELECT nombre FROM integrador WHERE Usuario=? AND Password =?", (self.usuario, self.password))
+                self.db.commit()
+                busqueda = self.dbcursor.fetchone()
+                if busqueda is not None:
+                    print("Haz ingresado a la base de datos.")
+                    self.db.close()
+                else:
+                    self.contador -=1
+                    print(F"Convinacion de usuario y contraseña invalido.\nLe quedan {self.contador} intentos.")
+            
+            except sqlite3.OperationalError:
+                print(sqlite3.OperationalError)
+                self.contador -=1
+                print(F"Ingrese un usuario y password valido.\nLe quedan {self.contador} intentos.")
+                
+        if self.contador == 0:
             self.db.close()
+            print("Acceso denegado.")
 
-    def modificarusuario (self,usuario, password):
+    def modificarusuario (self,usuario, password, datomodificar, nuevodato, variablemodificar):
 
-        self.conexion(self.db, self.dbcursor)
-        
-        self.usuario = input("Ingrese el usuario: ")
-        self.password= input("Ingrese el contraseña: ")
+            print("Menu de modificacion de usuarios: \n")
 
-        try:
-            self.dbcursor.execute("SELECT * FROM usuarios WHERE usuario=? AND password =?", (usuario, password))
-            busqueda = self.dbcursor.fetchone()
-            if busqueda is not None:
+            print("""Que dato desea modificar:
 
-                self.dbcursor.execute("UPDATE usuarios SET {variablemodificar} =? WHERE usuario =? AND password =?", (nuevodato,usuario,password))
+[1] - Nombre
+[2] - Apellido   
+[3] - Sexo
+[4] - Telefono
+[5] - DNI
+[6] - Salir
+            """)
 
-                print("Modificacion realizada con exito.")
+            self.datomodificar = int(input("\nIngrese el dato a modificar: "))
+
+            self.variablemodificar = ""
+            self.nuevodato = ""
+
+            if self.datomodificar == 1:
+                
+                self.variablemodificar = "Nombre"
+
+                self.nuevodato = input("Ingrese el nombre: ")
+
+            elif self.datomodificar == 2:
+                
+                self.variablemodificar = "Apellido"
+
+                self.nuevodato = input("Ingrese el apellido: ")
+
+            elif self.datomodificar == 3:
+
+                self.variablemodificar = "Sexo"#para ser lgbtqwerty friendly
+
+                self.nuevodato = input("Ingrese el sexo: ")
+
+            elif self.datomodificar == 4:
+
+                self.variablemodificar = "Telefono"
+
+                self.nuevodato = int(input("Ingrese el numero de telefono: "))
+
+            elif self.datomodificar == 5 :
+
+                self.variablemodificar = "Dni"
+
+                self.nuevodato = int(input("Ingrese el numero de DNI: "))
+
+            elif self.datomodificar == 6:
+                pass
+                Inicio(self)
 
             else:
+        
+                print("Ingrese una opcion valida.")
 
-                print("Convinación de usuario y contraseña incorrecta.")
+            self.usuario = input("Ingrese el usuario: ")
+            self.password = input ("Ingrese el password: ")
 
-        except:
+            try:
+                self.dbcursor.execute("SELECT nombre FROM integrador WHERE Usuario=? AND Password =?", (self.usuario, self.password))
+                self.db.commit()
+                busqueda = self.dbcursor.fetchone()
+                if busqueda is not None:
 
-            print("Ingrese una convinación valida.")
+                    self.dbcursor.execute("UPDATE integrador SET {self.variablemodificar} =? WHERE usuario =? AND password =?", (self.nuevodato,self.usuario,self.password))
+
+                    print("Modificacion realizada con exito.")
+
+                else:
+
+                    print("Convinación de usuario y contraseña incorrecta.")
+
+            except sqlite3.OperationalError:
+                print(sqlite3.OperationalError)
+                print("Ingrese una convinación valida.")
 
 
-operacionesbasedatos().crearbaseytabla2()
+OperacionesBaseDatos().crearbaseytabla2()
