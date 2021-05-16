@@ -101,17 +101,24 @@ class Logica():
 
     def login(self):
         badpassword = 0
-        try:
-            self.usuario = input("Ingrese su usario ")
-            if self.usuario == OperacionesBaseDatos.consutaindividual:
-                while badpassword <= 3:
-                    self.password = input("Ingrese su password")
-                    if self.password == OperacionesBaseDatos.consulta[2]:
-                        Logica.realizaroperacion
-                    else:
-                        print("Password equicada")
-                        badpassword += 1
-        except:
-            print("algo salio mal ...")
-
+        print("Binvenido")
+        print("Tiene usuario o desea crear uno")
+        opcion = int(input("Oprima 1 para crear un usuario o 2 para ingresar con su usuairo"))
+        if opcion == 1:
+            Logica.realizaroperacion()
+        elif opcion == 2:    
+            try:
+                self.usuario = input("Ingrese su usario ")
+                if self.usuario == OperacionesBaseDatos.consutaindividual:
+                    while badpassword <= 3:
+                        self.password = input("Ingrese su password")
+                        if self.password == OperacionesBaseDatos.consulta[2]:
+                            Logica.realizaroperacion
+                        else:
+                            print("Password equicada")
+                            badpassword += 1
+            except:
+                print("algo salio mal ...")
+        else:
+            print("opcion incorrecta ")
 
