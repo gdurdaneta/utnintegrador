@@ -7,7 +7,7 @@ class Inicio (Logica):
     
   def iniciar(self):
       Logica.login(self)
-      OperacionesBaseDatos.crearbaseytabla
+     
 
 
 Inicio().iniciar()

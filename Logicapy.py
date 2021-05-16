@@ -16,7 +16,7 @@ class Logica():
         self.variable = ""
         self.datomodificar = ""
         
-    def realizaroperacion():
+    def realizaroperacion(self):
         while True:
             print("""Bienvenido, elija la opcion deseada:\n
             [1] - Crear Usuario:
@@ -28,13 +28,13 @@ class Logica():
 
             opccion = int(input("ingrese su opccion"))
             if opccion == 1:
-                Logica.creausuario
+                Logica.creausuario(self)
             elif opccion == 2:
-                Logica.modifica
+                Logica.modifica(self)
             elif opccion == 3:
-                Logica.borra
+                Logica.borra(self)
             elif opccion == 4:
-                Logica.consulta
+                Logica.consulta(self)
             elif opccion == 5:
                 break
             else:
@@ -102,10 +102,10 @@ class Logica():
     def login(self):
         badpassword = 0
         print("Binvenido")
-        print("Tiene usuario o desea crear uno")
-        opcion = int(input("Oprima 1 para crear un usuario o 2 para ingresar con su usuairo"))
+        print("Tiene usuario o desea crear uno ")
+        opcion = int(input("Oprima 1 para crear un usuario o 2 para ingresar con su usuairo \n"))
         if opcion == 1:
-            Logica.realizaroperacion()
+            Logica.realizaroperacion(self)
         elif opcion == 2:    
             try:
                 self.usuario = input("Ingrese su usario ")

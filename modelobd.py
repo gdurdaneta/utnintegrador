@@ -1,3 +1,4 @@
+from Logicapy import *
 from sqlite3.dbapi2 import Cursor
 #from Logicapy import Logica
 import sqlite3
@@ -5,7 +6,7 @@ import sqlite3
 class OperacionesBaseDatos():
 
     def __init__(self):
-
+        super(Logica)
         self.db = sqlite3.connect("database.db")
         self.dbcursor = self.db.cursor()
         self.contador = 3
@@ -27,13 +28,21 @@ class OperacionesBaseDatos():
         finally:
             print("Base de datos conectada Correctamente")
 
-    def creausuarios(self, usuario, nombre, apellido, sexo, telefono, password, dni):
+    def creausuario(self, *args):
 
-        self.dbcursor.execute(
-            "INSERT INTO integrador (Usuario, Password, Nombre, Apellido, Sexo, Telefono, Dni) VALUES (?, ?, ?, ?, ?, ? ,?)",
-            (self.usuario, self.password, self.nombre, self.apellido, self.sexo, self.telefono, self.dni))
+        sql = """INSERT INTO integrador (Usuario, 
+                                        Password, 
+                                        Nombre, 
+                                        Apellido, 
+                                        Sexo, 
+                                        Telefono, 
+                                        Dni) 
+                                        VALUES (?, ?, ?, ?, ?, ? ,?)"""
+        #self.db.cursor.execute(sql, args) 
+        #self.dbcursor.execute(sql, args)
+        self.db.execute(sql, args)
         self.db.commit()
-
+        
         self.db.close()
         
         print("\n Se ha creado el usuario.\n")
@@ -49,32 +58,21 @@ class OperacionesBaseDatos():
             ("Convinacion de usuario y contraseña invalido.")
 
     def borrartodo(self):
-
         ordenborrartodo = input("¿Seguro que quiere borrar todo? S/N: \n")
-
         if ordenborrartodo == "S" or ordenborrartodo == "s":        
-
             self.conexion(self.db, self.dbcursor)
-
             self.dbcursor.execute("DROP TABLE usuarios")
-
             self.db.close()
-
             print("Base de datos eliminada.")
-
         elif ordenborrartodo == "N" or ordenborrartodo == "n":
             print("La base de datos no se elimino.")
-
         else:
             print("Ingreso invalido.")
 
     def ingresousuarios(self, usuario, password):
-
         print("\nMenu de acceso a usuarios:\n")
         #self.conexion(self.db, self.dbcursor)
-
         while self.contador != 0:
-        
             self.usuario = input("Ingrese el usuario: ")
             self.password = input("Ingrese el contraseña: ")
 
@@ -88,12 +86,10 @@ class OperacionesBaseDatos():
                 else:
                     self.contador -=1
                     print(F"Convinacion de usuario y contraseña invalido.\nLe quedan {self.contador} intentos.")
-            
             except sqlite3.OperationalError:
                 print(sqlite3.OperationalError)
                 self.contador -=1
                 print(F"Ingrese un usuario y password valido.\nLe quedan {self.contador} intentos.")
-                
         if self.contador == 0:
             self.db.close()
             print("Acceso denegado.")
