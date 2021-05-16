@@ -1,8 +1,8 @@
 from sqlite3.dbapi2 import Cursor
-from Logicapy import Logica
+#from Logicapy import Logica
 import sqlite3
 
-class OperacionesBaseDatos(Logica):
+class OperacionesBaseDatos():
 
     def __init__(self):
 
@@ -41,7 +41,7 @@ class OperacionesBaseDatos(Logica):
     def borrar(self, usuario, password):
         try:
             sql = "DELETE FROM integrador WHERE usuario =? and password =?",(self.usuario, self.password)
-            self.dbcursor.execute()
+            self.dbcursor.execute(sql)
             self.db.commit()
             self.db.close()
             print("Borrado exitoso.")
@@ -131,6 +131,3 @@ class OperacionesBaseDatos(Logica):
             except sqlite3.OperationalError:
                 print(sqlite3.OperationalError)
                 print("Ingrese una convinación valida.")
-
-
-OperacionesBaseDatos().crearbaseytabla2()

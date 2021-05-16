@@ -3,12 +3,11 @@ from modelobd import OperacionesBaseDatos
 
 
 class Inicio (Logica):
-
-  def iniciar():
-      Logica.login
+    
+    
+  def iniciar(self):
+      Logica.login(self)
       OperacionesBaseDatos.crearbaseytabla
 
+
 Inicio().iniciar()
-
-
-

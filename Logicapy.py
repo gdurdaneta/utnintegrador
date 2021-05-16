@@ -1,18 +1,18 @@
-from Main_Windows_base import Ui_MainWindow
+#from Main_Windows_base import Ui_MainWindow
 from modelobd import OperacionesBaseDatos
 #from funcionescnclase import ingresarusuario.borrar
 
 
 class Logica():
 
-    def __init__(self, nombre, apellido, dni, sexo, telefono, usuario, password):
-        self.nombre = nombre
-        self.apellido = apellido
-        self.dni = dni
-        self.sexo = sexo
-        self.telefono = telefono
-        self.usuario = usuario
-        self.password = password
+    def __init__(self):
+        self.nombre = ''
+        self.apellido = '' 
+        self.dni = 0
+        self.sexo = ''
+        self.telefono = 0
+        self.usuario = ''
+        self.password = ''
         self.variable = ""
         self.datomodificar = ""
         
