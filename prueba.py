@@ -1,6 +1,6 @@
-import funcionescnclase
+import modelobd
 
-basedatos = funcionescnclase.operacionesbasedatos()
+basedatos = modelobd.operacionesbasedatos()
 
 basedatos.ingresarusuario()
 
