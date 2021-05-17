@@ -6,7 +6,7 @@ import sqlite3
 class OperacionesBaseDatos():
 
     def __init__(self):
-        super(Logica)
+        #super(Logica)
         self.db = sqlite3.connect("database.db")
         self.dbcursor = self.db.cursor()
         self.contador = 3
