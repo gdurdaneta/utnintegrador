@@ -1,3 +1,4 @@
+
 import tkinter as tk
 import tkinter.font as tkFont
 #from PIL import ImageTk, Image
@@ -15,9 +16,8 @@ class loginApp:
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
-
-        usuarioLabel=tk.Label(root)
         ft = tkFont.Font(family='Times',size=10)
+        usuarioLabel=tk.Label(root)
         #usuarioLabel["font"] = ft
         usuarioLabel["fg"] = "#333333"
         usuarioLabel["justify"] = "center"
@@ -25,7 +25,6 @@ class loginApp:
         usuarioLabel.place(x=50,y=160,width=70,height=25)
 
         passwordLabel=tk.Label(root)
-        ft = tkFont.Font(family='Times',size=10)
         # passwordLabel["font"] = ft
         passwordLabel["fg"] = "#333333"
         passwordLabel["justify"] = "center"
@@ -34,7 +33,7 @@ class loginApp:
 
         ingresarBotton=tk.Button(root)
         ingresarBotton["bg"] = "#fafafa"
-        ft = tkFont.Font(family='Times',size=10)
+        
         #ingresarBotton["font"] = ft
         ingresarBotton["fg"] = "#3d3d3d"
         ingresarBotton["justify"] = "center"
@@ -44,7 +43,6 @@ class loginApp:
 
         crearBotton=tk.Button(root)
         crearBotton["bg"] = "#fafafa"
-        # ft = tkFont.Font(family='Times',size=10)
         # crearBotton["font"] = ft
         crearBotton["fg"] = "#3d3d3d"
         crearBotton["justify"] = "center"
@@ -54,7 +52,6 @@ class loginApp:
 
         usuarioEntry=tk.Entry(root)
         usuarioEntry["borderwidth"] = "1px"
-        ft = tkFont.Font(family='Times',size=10)
         # usuarioEntry["font"] = ft
         usuarioEntry["fg"] = "#333333"
         usuarioEntry["justify"] = "center"
@@ -63,7 +60,6 @@ class loginApp:
 
         passwordEntry=tk.Entry(root)
         passwordEntry["borderwidth"] = "1px"
-        # ft = tkFont.Font(family='Times',size=10)
         passwordEntry["font"] = ft
         passwordEntry["fg"] = "#333333"
         passwordEntry["justify"] = "center"
@@ -74,7 +70,6 @@ class loginApp:
         # logo.place(x=120,y=150,width=100,height=25)
 
         urdantemsg=tk.Label(root)
-        ft = tkFont.Font(family='Times',size=10)
         # passwordLabel["font"] = ft
         #urdantemsg["fg"] = "#333333"
         urdantemsg["justify"] = "right"
@@ -82,7 +77,6 @@ class loginApp:
         urdantemsg.place(x=140,y=430,width=150,height=50)
 
         franciscomsg=tk.Label(root)
-        ft = tkFont.Font(family='Times',size=10)
         # passwordLabel["font"] = ft
         #franciscomsg["fg"] = "#333333"
         franciscomsg["justify"] = "right"
@@ -92,20 +86,29 @@ class loginApp:
 
 
     def IngressBotton(self):
-        loginApp.quit()
-        rootlogin.destroy
+        rootlogin.destroy()
         root = tk.Tk()
+        
         baseapp = baseApp(root)
         root.mainloop()
         print("command")
 
 
     def CreateBotton(self):
+
+        rootlogin.destroy()
+        root = tk.Tk()
+        baseapp = baseApp(root)
+        root.mainloop()
         print("command")
 
-    def quit():
-        rootlogin.destroy()
+    def iniciar():
+        rootlogin = tk.Tk()
+        app = loginApp(rootlogin)
+        rootlogin.mainloop()
 
+
+ 
 
 
 class baseApp:
@@ -120,9 +123,9 @@ class baseApp:
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
+        ft = tkFont.Font(family='Times',size=10)
 
         dniLabel=tk.Label(root)
-        ft = tkFont.Font(family='Times',size=10)
         # dniLabel["font"] = ft
         dniLabel["fg"] = "#333333"
         dniLabel["justify"] = "center"
@@ -131,27 +134,24 @@ class baseApp:
 
         contultarBotton=tk.Button(root)
         contultarBotton["bg"] = "#fafafa"
-        ft = tkFont.Font(family='Times',size=10)
         # contultarBotton["font"] = ft
         contultarBotton["fg"] = "#3d3d3d"
         contultarBotton["justify"] = "center"
         contultarBotton["text"] = "Consultar"
         contultarBotton.place(x=250,y=300,width=70,height=25)
-        contultarBotton["command"] = self.GButton_33_command
+        contultarBotton["command"] = self.consultarBotton_command
 
         eliminarBotton=tk.Button(root)
         eliminarBotton["bg"] = "#fafafa"
-        ft = tkFont.Font(family='Times',size=10)
         # eliminarBotton["font"] = ft
         eliminarBotton["fg"] = "#3d3d3d"
         eliminarBotton["justify"] = "center"
         eliminarBotton["text"] = "Eliminar"
         eliminarBotton.place(x=170,y=300,width=70,height=25)
-        eliminarBotton["command"] = self.GButton_820_command
+        eliminarBotton["command"] = self.eliminarBotton_command
 
         apellidoEntry=tk.Entry(root)
         apellidoEntry["borderwidth"] = "1px"
-        ft = tkFont.Font(family='Times',size=10)
         # apellidoEntry["font"] = ft
         apellidoEntry["fg"] = "#333333"
         apellidoEntry["justify"] = "left"
@@ -161,7 +161,6 @@ class baseApp:
 
         dniEntry=tk.Entry(root)
         dniEntry["borderwidth"] = "1px"
-        ft = tkFont.Font(family='Times',size=10)
         # dniEntry["font"] = ft
         dniEntry["fg"] = "#333333"
         dniEntry["justify"] = "left"
@@ -171,26 +170,23 @@ class baseApp:
 
         crearBotton=tk.Button(root)
         crearBotton["bg"] = "#fafafa"
-        ft = tkFont.Font(family='Times',size=10)
         # crearBotton["font"] = ft
         crearBotton["fg"] = "#3d3d3d"
         crearBotton["justify"] = "center"
         crearBotton["text"] = "Crear"
         crearBotton.place(x=10,y=300,width=70,height=25)
-        crearBotton["command"] = self.GButton_524_command
+        crearBotton["command"] = self.crearBotton_command
 
         modificarBotton=tk.Button(root)
         modificarBotton["bg"] = "#fafafa"
-        ft = tkFont.Font(family='Times',size=10)
         # modificarBotton["font"] = ft
         modificarBotton["fg"] = "#3d3d3d"
         modificarBotton["justify"] = "center"
         modificarBotton["text"] = "Modificar"
         modificarBotton.place(x=90,y=300,width=70,height=25)
-        modificarBotton["command"] = self.GButton_632_command
+        modificarBotton["command"] = self.modificarBotton_command
 
         nombreLabel=tk.Label(root)
-        ft = tkFont.Font(family='Times',size=10)
         # nombreLabel["font"] = ft
         nombreLabel["fg"] = "#333333"
         nombreLabel["justify"] = "center"
@@ -198,7 +194,6 @@ class baseApp:
         nombreLabel.place(x=50,y=120,width=70,height=25)
 
         passwordLabel=tk.Label(root)
-        ft = tkFont.Font(family='Times',size=10)
         # passwordLabel["font"] = ft
         passwordLabel["fg"] = "#333333"
         passwordLabel["justify"] = "center"
@@ -207,7 +202,6 @@ class baseApp:
 
         nombreEntry=tk.Entry(root)
         nombreEntry["borderwidth"] = "1px"
-        ft = tkFont.Font(family='Times',size=10)
         # nombreEntry["font"] = ft
         nombreEntry["fg"] = "#333333"
         nombreEntry["justify"] = "left"
@@ -217,7 +211,6 @@ class baseApp:
 
         passwordEntry=tk.Entry(root)
         passwordEntry["borderwidth"] = "1px"
-        ft = tkFont.Font(family='Times',size=10)
         # passwordEntry["font"] = ft
         passwordEntry["fg"] = "#333333"
         passwordEntry["justify"] = "left"
@@ -226,7 +219,6 @@ class baseApp:
         passwordEntry.place(x=140,y=80,width=141,height=30)
 
         usuarioLabel=tk.Label(root)
-        ft = tkFont.Font(family='Times',size=10)
         # usuarioLabel["font"] = ft
         usuarioLabel["fg"] = "#333333"
         usuarioLabel["justify"] = "center"
@@ -235,7 +227,6 @@ class baseApp:
 
         usuarioEntry=tk.Entry(root)
         usuarioEntry["borderwidth"] = "1px"
-        ft = tkFont.Font(family='Times',size=10)
         # usuarioEntry["font"] = ft
         usuarioEntry["fg"] = "#333333"
         usuarioEntry["justify"] = "left"
@@ -245,7 +236,6 @@ class baseApp:
 
         telefonoLabel=tk.Label(root)
         telefonoLabel["anchor"] = "n"
-        ft = tkFont.Font(family='Times',size=10)
         # telefonoLabel["font"] = ft
         telefonoLabel["fg"] = "#333333"
         telefonoLabel["justify"] = "center"
@@ -254,7 +244,6 @@ class baseApp:
 
         telefonoEntry=tk.Entry(root)
         telefonoEntry["borderwidth"] = "1px"
-        ft = tkFont.Font(family='Times',size=10)
         # telefonoEntry["font"] = ft
         telefonoEntry["fg"] = "#333333"
         telefonoEntry["justify"] = "left"
@@ -263,27 +252,26 @@ class baseApp:
         telefonoEntry.place(x=140,y=240,width=140,height=30)
 
         apellidoLabel=tk.Label(root)
-        ft = tkFont.Font(family='Times',size=10)
-        # GLabel_664["font"] = ft
+        # apellidoLabel["font"] = ft
         apellidoLabel["fg"] = "#333333"
         apellidoLabel["justify"] = "center"
         apellidoLabel["text"] = "Apellido"
         apellidoLabel.place(x=50,y=160,width=70,height=25)
 
 
-    def GButton_33_command(self):
+    def crearBotton_command(self):
         print("command")
 
 
-    def GButton_820_command(self):
+    def eliminarBotton_command(self):
         print("command")
 
 
-    def GButton_524_command(self):
+    def consultarBotton_command(self):
         print("command")
 
 
-    def GButton_632_command(self):
+    def modificarBotton_command(self):
         print("command")
 
 
