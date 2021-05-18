@@ -1,8 +1,6 @@
-from PyQt5 import QtWidgets
 import sys 
-from Main_Windows_logins import mainlogin
-from Main_Windows_base import mainbase
 from modelobd import OperacionesBaseDatos
+from visual import loginApp
 
 
 class logica():
@@ -23,15 +21,37 @@ class logica():
         #Alerta de ingreso valido y luego a crear ???
 
     def botoncrear():
-        pass
+        try:
+            OperacionesBaseDatos().creausuario(*args=) #No entiendo como se utlizan estos args
+        except:
+            pass #Pantalla de alerta
+        finally:
+            pass
 
     def botonconsultar():
-        pass
+        try:
+            OperacionesBaseDatos().consultageneral(*args=) #No entiendo como se utlizan estos args
+        except:
+            pass #Pantalla de alerta
+        finally:
+            pass
 
     def botonmodificar():
-        pass
+        try:
+            OperacionesBaseDatos().modificarusuario(*args=) #No entiendo como se utlizan estos args
+        except:
+            pass #Pantalla de alerta
+        finally:
+            pass
 
     def botoneliminar():
-        pass
+        try:
+            OperacionesBaseDatos().borrar(self.usuario,
+                                            self.password) 
+        except:
+            pass #Pantalla de alerta
+        finally:
+            pass
+
 
 logica().botoningreso("demo","demo")

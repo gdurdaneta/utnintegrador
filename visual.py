@@ -1,4 +1,5 @@
 
+from typing import get_args
 from logica import logica
 import tkinter as tk
 import tkinter.font as tkFont
@@ -81,9 +82,8 @@ class loginApp:
         # passwordLabel["font"] = ft
         #franciscomsg["fg"] = "#333333"
         franciscomsg["justify"] = "right"
-        franciscomsg["text"] = "Francisco"
+        franciscomsg["text"] = "Francisco Bryndum"
         franciscomsg.place(x=140,y=400,width=150,height=30)
-
 
 
     def IngressBotton(self):
@@ -100,21 +100,21 @@ class loginApp:
 
 
     def CreateBotton(self):
-
-        rootlogin.destroy()
-        root = tk.Tk()
-        baseapp = baseApp(root)
-        root.mainloop()
-        print("command")
+        try:
+            logica.botoncrear(self.usuarioEntry, self.passwordEntry, self.apellidoEntry,self.dniEntry, self.nombreEntry, self.telefonoEntry)
+        except:
+            print("error")
+        finally:
+            rootlogin.destroy()
+            root = tk.Tk()
+            baseapp = baseApp(root)
+            root.mainloop()
+            print("command")
 
     def iniciar():
         rootlogin = tk.Tk()
         app = loginApp(rootlogin)
         rootlogin.mainloop()
-
-
- 
-
 
 class baseApp:
     def __init__(self, root):
@@ -155,23 +155,23 @@ class baseApp:
         eliminarBotton.place(x=170,y=300,width=70,height=25)
         eliminarBotton["command"] = self.eliminarBotton_command
 
-        apellidoEntry=tk.Entry(root)
-        apellidoEntry["borderwidth"] = "1px"
+        self.apellidoEntry=tk.Entry(root)
+        self.apellidoEntry["borderwidth"] = "1px"
         # apellidoEntry["font"] = ft
-        apellidoEntry["fg"] = "#333333"
-        apellidoEntry["justify"] = "left"
-        apellidoEntry["text"] = "Apellido_entry"
-        apellidoEntry["relief"] = "sunken"
-        apellidoEntry.place(x=140,y=160,width=141,height=30)
+        self.apellidoEntry["fg"] = "#333333"
+        self.apellidoEntry["justify"] = "left"
+        self.apellidoEntry["text"] = "Apellido_entry"
+        self.apellidoEntry["relief"] = "sunken"
+        self.apellidoEntry.place(x=140,y=160,width=141,height=30)
 
-        dniEntry=tk.Entry(root)
-        dniEntry["borderwidth"] = "1px"
+        self.dniEntry=tk.Entry(root)
+        self.dniEntry["borderwidth"] = "1px"
         # dniEntry["font"] = ft
-        dniEntry["fg"] = "#333333"
-        dniEntry["justify"] = "left"
-        dniEntry["text"] = "Dni_entry"
-        dniEntry["relief"] = "sunken"
-        dniEntry.place(x=140,y=200,width=142,height=30)
+        self.dniEntry["fg"] = "#333333"
+        self.dniEntry["justify"] = "left"
+        self.dniEntry["text"] = "Dni_entry"
+        self.dniEntry["relief"] = "sunken"
+        self.dniEntry.place(x=140,y=200,width=142,height=30)
 
         crearBotton=tk.Button(root)
         crearBotton["bg"] = "#fafafa"
@@ -205,23 +205,23 @@ class baseApp:
         passwordLabel["text"] = "Password"
         passwordLabel.place(x=50,y=80,width=70,height=25)
 
-        nombreEntry=tk.Entry(root)
-        nombreEntry["borderwidth"] = "1px"
+        self.nombreEntry=tk.Entry(root)
+        self.nombreEntry["borderwidth"] = "1px"
         # nombreEntry["font"] = ft
-        nombreEntry["fg"] = "#333333"
-        nombreEntry["justify"] = "left"
-        nombreEntry["text"] = "Nombre_entry"
-        nombreEntry["relief"] = "sunken"
-        nombreEntry.place(x=140,y=120,width=140,height=30)
+        self.nombreEntry["fg"] = "#333333"
+        self.nombreEntry["justify"] = "left"
+        self.nombreEntry["text"] = "Nombre_entry"
+        self.nombreEntry["relief"] = "sunken"
+        self.nombreEntry.place(x=140,y=120,width=140,height=30)
 
-        passwordEntry=tk.Entry(root)
-        passwordEntry["borderwidth"] = "1px"
+        self.passwordEntry=tk.Entry(root)
+        self.passwordEntry["borderwidth"] = "1px"
         # passwordEntry["font"] = ft
-        passwordEntry["fg"] = "#333333"
-        passwordEntry["justify"] = "left"
-        passwordEntry["text"] = "Password_entry"
-        passwordEntry["relief"] = "sunken"
-        passwordEntry.place(x=140,y=80,width=141,height=30)
+        self.passwordEntry["fg"] = "#333333"
+        self.passwordEntry["justify"] = "left"
+        self.passwordEntry["text"] = "Password_entry"
+        self.passwordEntry["relief"] = "sunken"
+        self.passwordEntry.place(x=140,y=80,width=141,height=30)
 
         usuarioLabel=tk.Label(root)
         # usuarioLabel["font"] = ft
@@ -230,14 +230,14 @@ class baseApp:
         usuarioLabel["text"] = "Usuario"
         usuarioLabel.place(x=50,y=40,width=70,height=25)
 
-        usuarioEntry=tk.Entry(root)
-        usuarioEntry["borderwidth"] = "1px"
+        self.usuarioEntry=tk.Entry(root)
+        self.usuarioEntry["borderwidth"] = "1px"
         # usuarioEntry["font"] = ft
-        usuarioEntry["fg"] = "#333333"
-        usuarioEntry["justify"] = "left"
-        usuarioEntry["text"] = "Usuario_entry"
-        usuarioEntry["relief"] = "sunken"
-        usuarioEntry.place(x=140,y=40,width=141,height=30)
+        self.usuarioEntry["fg"] = "#333333"
+        self.usuarioEntry["justify"] = "left"
+        self.usuarioEntry["text"] = "Usuario_entry"
+        self.usuarioEntry["relief"] = "sunken"
+        self.usuarioEntry.place(x=140,y=40,width=141,height=30)
 
         telefonoLabel=tk.Label(root)
         telefonoLabel["anchor"] = "n"
