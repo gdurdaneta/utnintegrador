@@ -1,13 +1,11 @@
 from Logicapy import Logica
 from modelobd import OperacionesBaseDatos
-
+from visual import loginApp, baseApp
+import tkinter as tk
 
 class Inicio (Logica):
-    
-    
-  def iniciar(self):
-      Logica.login(self)
-     
+    def __init__(self):
+        super(loginApp).__init__()
+  
 
 
-Inicio().iniciar()
