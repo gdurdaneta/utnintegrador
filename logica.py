@@ -23,11 +23,7 @@ class logica():
         #Alerta de ingreso valido y luego a crear ???
 
     def botoncrear():
-        mainlogin().destroy(True)
-        base = QtWidgets.QApplication([])
-        aplicacion = mainbase()
-        aplicacion.show()
-        sys.exit(base.exec())
+        pass
 
     def botonconsultar():
         pass
