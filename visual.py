@@ -265,8 +265,8 @@ class baseApp:
 
 
     def modificarBotton_command(self):
-        logica.botonmodificar()
-        print("command")
+        pass
+    
 
 
 class ingress(): #no esta funcionando
