@@ -1,20 +1,24 @@
 import sys 
-from modelobd import OperacionesBaseDatos
-from visual import loginApp
+from modelobd import OperacionDB
+
 
 
 class logica():
     def __init__(self):
-        datos = mainlogin
-        self.usuario = datos().Entry_Usuario
-        self.password = datos().Entry_Password
+        pass
+        #datos = mainlogin
+        #self.usuario = datos().Entry_Usuario
+        #self.password = datos().Entry_Password
         
 
-    def botoningreso(self) :
+    def botoningreso(self,username,password) :
         try:
-            OperacionesBaseDatos().ingresousuarios(self.usuario, 
-                                                   self.password)
+            OperacionesBaseDatos().ingresousuarios(username, 
+                                                   password)
+            print(OperacionesBaseDatos().ingresousuarios(username, 
+                                                   password))                                       
         except:
+            print("operaciones base de datos en logica ")
             pass #Pantalla de alerta
         finally:
             pass
@@ -22,7 +26,7 @@ class logica():
 
     def botoncrear():
         try:
-            OperacionesBaseDatos().creausuario(*args=) #No entiendo como se utlizan estos args
+            OperacionesBaseDatos().creausuario() #No entiendo como se utlizan estos args
         except:
             pass #Pantalla de alerta
         finally:
@@ -30,7 +34,7 @@ class logica():
 
     def botonconsultar():
         try:
-            OperacionesBaseDatos().consultageneral(*args=) #No entiendo como se utlizan estos args
+            OperacionesBaseDatos().consultageneral() #No entiendo como se utlizan estos args
         except:
             pass #Pantalla de alerta
         finally:
@@ -38,20 +42,19 @@ class logica():
 
     def botonmodificar():
         try:
-            OperacionesBaseDatos().modificarusuario(*args=) #No entiendo como se utlizan estos args
+            OperacionesBaseDatos().modificarusuario() #No entiendo como se utlizan estos args
         except:
             pass #Pantalla de alerta
         finally:
             pass
 
-    def botoneliminar():
+    def botoneliminar(self):
         try:
             OperacionesBaseDatos().borrar(self.usuario,
-                                            self.password) 
+                                        self.password) 
         except:
             pass #Pantalla de alerta
         finally:
             pass
 
 
-logica().botoningreso("demo","demo")

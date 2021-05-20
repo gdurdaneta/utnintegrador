@@ -1,5 +1,5 @@
 #from Main_Windows_base import Ui_MainWindow
-from modelobd import OperacionesBaseDatos
+#from modelobd import OperacionesBaseDatos
 #from funcionescnclase import ingresarusuario.borrar
 
 
@@ -51,7 +51,7 @@ class Logica():
         self.telefono = int(input("Ingrese el numero de celular: "))
         self.dni = int(input("Ingrese el DNI: "))
 
-        OperacionesBaseDatos().creausuario(Logica.guardardatos)
+        #OperacionesBaseDatos().creausuario(Logica.guardardatos)
 
     def modifica(self):
         print("Menu de modificacion de usuarios: \n")

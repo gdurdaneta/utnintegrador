@@ -1,16 +1,22 @@
+from typing import get_args
 from Logicapy import *
-from sqlite3.dbapi2 import Cursor
+from sqlite3.dbapi2 import Cursor, connect
 #from Logicapy import Logica
 import sqlite3
 
-class OperacionesBaseDatos():
+class OperacionDB():
 
     def __init__(self):
-        #super(Logica)
         self.db = sqlite3.connect("database.db")
         self.dbcursor = self.db.cursor()
-        self.contador = 3
         self.consulta = []
+        #self.ingreso = False
+
+    def prueba(self):
+        sql = "SELECT * FROM integrador"
+        self.dbcursor.execute(sql)
+        tabla = self.dbcursor.fetchone()
+        print(tabla)
 
     def crearbaseytabla(self):
         try:
@@ -28,19 +34,18 @@ class OperacionesBaseDatos():
         finally:
             print("Base de datos conectada Correctamente")
 
-    def creausuario(self, *args):
+    def creausuario(self, lista):
 
         sql = """INSERT INTO integrador (Usuario, 
                                         Password, 
                                         Nombre, 
-                                        Apellido, 
-                                        Sexo, 
+                                        Apellido,  
                                         Telefono, 
                                         Dni) 
-                                        VALUES (?, ?, ?, ?, ?, ? ,?)"""
+                                        VALUES (?, ?, ?, ?, ? ,?)"""
         #self.db.cursor.execute(sql, args) 
         #self.dbcursor.execute(sql, args)
-        self.db.execute(sql, args)
+        self.db.execute(sql, lista)
         self.db.commit()
         
         self.db.close()
@@ -70,30 +75,20 @@ class OperacionesBaseDatos():
             print("Ingreso invalido.")
 
     def ingresousuarios(self, usuario, password):
-        print("\nMenu de acceso a usuarios:\n")
-        #self.conexion(self.db, self.dbcursor)
-        while self.contador != 0:
-            self.usuario = input("Ingrese el usuario: ")
-            self.password = input("Ingrese el contraseña: ")
-
-            try:
-                self.dbcursor.execute("SELECT nombre FROM integrador WHERE Usuario=? AND Password =?", (self.usuario, self.password))
-                self.db.commit()
-                busqueda = self.dbcursor.fetchone()
-                if busqueda is not None:
-                    print("Haz ingresado a la base de datos.")
-                    self.db.close()
-                else:
-                    self.contador -=1
-                    print(F"Convinacion de usuario y contraseña invalido.\nLe quedan {self.contador} intentos.")
-            except sqlite3.OperationalError:
-                print(sqlite3.OperationalError)
-                self.contador -=1
-                print(F"Ingrese un usuario y password valido.\nLe quedan {self.contador} intentos.")
-        if self.contador == 0:
-            self.db.close()
-            print("Acceso denegado.")
-
+        try:
+            self.dbcursor.execute("SELECT nombre FROM integrador WHERE Usuario=? AND Password =?", (usuario, password))
+            self.db.commit()
+            busqueda = self.dbcursor.fetchone()
+            print((busqueda))
+            if busqueda is not None:
+                print("Haz ingresado a la base de datos.")
+                self.dbcursor.close()
+                return True
+            else:
+                print("hello mundo abajo false")
+        except sqlite3.OperationalError:
+            print(sqlite3.OperationalError)
+        
     def consultageneral(self, *args):
         
         sql = "SELECT * FROM integrador WHERE usuario=?" + args
@@ -127,3 +122,6 @@ class OperacionesBaseDatos():
             except sqlite3.OperationalError:
                 print(sqlite3.OperationalError)
                 print("Ingrese una convinación valida.")
+
+
+#OperacionDB().ingresousuarios("asd", "asd")
