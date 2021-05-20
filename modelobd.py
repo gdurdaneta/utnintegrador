@@ -25,7 +25,6 @@ class OperacionDB():
                                                             Nombre VARCHAR(20) NOT NULL, 
                                                             Apellido VARCHAR(20) NOT NULL, 
                                                             Dni INTENGER(10) NOT NULL, 
-                                                            Sexo VARCHAR(10) NOT NULL, 
                                                             Telefono INTEGER(10) NOT NULL)''')
             self.db.commit()
             self.db.close()
@@ -40,8 +39,8 @@ class OperacionDB():
                                         Password, 
                                         Nombre, 
                                         Apellido,  
-                                        Telefono, 
-                                        Dni) 
+                                        Dni, 
+                                        Telefono) 
                                         VALUES (?, ?, ?, ?, ? ,?)"""
         #self.db.cursor.execute(sql, args) 
         #self.dbcursor.execute(sql, args)
@@ -124,4 +123,3 @@ class OperacionDB():
                 print("Ingrese una convinación valida.")
 
 
-#OperacionDB().ingresousuarios("asd", "asd")
