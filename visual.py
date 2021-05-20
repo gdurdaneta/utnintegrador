@@ -4,6 +4,7 @@ from modelobd import OperacionDB
 import sqlite3
 import tkinter as tk
 import tkinter.font as tkFont
+from tkinter import messagebox
 #from PIL import ImageTk, Image
 import os
 
@@ -248,17 +249,19 @@ class baseApp:
                 self.apellidoEntry.get(), self.dniEntry.get(), self.telefonoEntry.get()
         ]
         OperacionDB().creausuario(lista)
-        print("command")
+        messagebox.showinfo(message="Usuario Creado Correctamente", title="Alerta!")
+        
         
 
     def eliminarBotton_command(self):
-        logica.botoneliminar()
-        print("command")
+        OperacionDB().borrar(self.usuarioEntry.get(), self.passwordEntry.get())
+        # messagebox.showinfo(message="Usuario Borrado", title="Alerta!!")
 
 
     def consultarBotton_command(self):
-        logica.botonconsultar()
-        print("command")
+        consulta = OperacionDB().consultageneral(self.usuarioEntry.get())
+        messagebox.showinfo(message=consulta, title="Consulta")
+        print(consulta)
 
 
     def modificarBotton_command(self):

@@ -10,13 +10,6 @@ class OperacionDB():
         self.db = sqlite3.connect("database.db")
         self.dbcursor = self.db.cursor()
         self.consulta = []
-        #self.ingreso = False
-
-    def prueba(self):
-        sql = "SELECT * FROM integrador"
-        self.dbcursor.execute(sql)
-        tabla = self.dbcursor.fetchone()
-        print(tabla)
 
     def crearbaseytabla(self):
         try:
@@ -52,11 +45,13 @@ class OperacionDB():
         print("\n Se ha creado el usuario.\n")
 
     def borrar(self, usuario, password):
+        
         try:
-            sql = "DELETE FROM integrador WHERE usuario =? and password =?",(self.usuario, self.password)
-            self.dbcursor.execute(sql)
+            print(usuario, password)
+            self.dbcursor.execute("DELETE FROM integrador WHERE Usuario =? and Password =?",(usuario, password,))
             self.db.commit()
             self.db.close()
+            print(self.dbcursor.rowcount)
             print("Borrado exitoso.")
         except:
             ("Convinacion de usuario y contraseña invalido.")
@@ -88,15 +83,15 @@ class OperacionDB():
         except sqlite3.OperationalError:
             print(sqlite3.OperationalError)
         
-    def consultageneral(self, *args):
+    def consultageneral(self, usuario):
         
-        sql = "SELECT * FROM integrador WHERE usuario=?" + args
         try:
-            self.dbcursor.execute(sql)
+            self.dbcursor.execute("SELECT * FROM integrador WHERE Usuario=?", (usuario,))
             tabla = self.dbcursor.fetchone()
             for datos in tabla:
                 self.consulta.append(datos)
             self.dbcursor.close()
+            return self.consulta
         except sqlite3.OperationalError:
             print(sqlite3.OperationalError)
 
