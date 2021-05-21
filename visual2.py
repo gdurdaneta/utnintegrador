@@ -1,10 +1,13 @@
 import tkinter as tk
 import tkinter.font as tkFont
+from tkinter import messagebox
+from modelobd import OperacionDB
 
 class App:
     def __init__(self, root):
         #setting title
         root.title("Integrado!")
+        
         #setting window size
         width=335
         height=560
@@ -45,11 +48,19 @@ class App:
         self.botonmodifica.place(x=230,y=100,width=70,height=25)
         self.botonmodifica["command"] = self.bmodifica
 
+        self.validaEntry=tk.Entry(root)
+        self.validaEntry["borderwidth"] = "1px"
+        self.validaEntry["fg"] = "#333333"
+        self.validaEntry["justify"] = "left"
+        self.validaEntry["text"] = "Valida_entry"
+        self.validaEntry["relief"] = "sunken"
+        self.validaEntry.place(x=90,y=200,width=141,height=30)
+
         self.dataEntry=tk.Entry(root)
         self.dataEntry["borderwidth"] = "1px"
         self.dataEntry["fg"] = "#333333"
         self.dataEntry["justify"] = "left"
-        self.dataEntry["text"] = "Usuario_entry"
+        self.dataEntry["text"] = "data_entry"
         self.dataEntry["relief"] = "sunken"
         self.dataEntry.place(x=90,y=60,width=141,height=30)
 
@@ -98,20 +109,21 @@ class App:
         self.cbDNI["onvalue"] = "1"
         self.cbDNI["command"] = self.bcbdni
 
+        #self.usuario = usuario
+
     def bconsulta(self):
-        print("command")
+        print(self.usuario)
+        consulta = OperacionDB().consultageneral(self.usuarioEntry.get())
+        messagebox.showinfo(message=consulta, title="Consulta")
+        print(consulta)
 
 
     def belimina(self):
-        print("command")
-
-
-    def bmodifica(self):
-        print("command")
-
+        OperacionDB().borrar(self.usuarioEntry.get(), self.passwordEntry.get())
 
     def bcbpassword(self):
-        print("command")
+        OperacionDB().modificarusuario("Password",self.dataEntry.get(), self.validaEntry.get())
+      
 
 
     def bcbnombre(self):
@@ -129,8 +141,10 @@ class App:
     def bcbdni(self):
         print("command")
 
+    def bmodifica(self):
+        print("command")
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = App(root)
-    root.mainloop()
+# if __name__ == "__main__":
+#     root = tk.Tk()
+#     app = App(root)
+#     root.mainloop()

@@ -95,26 +95,30 @@ class OperacionDB():
         except sqlite3.OperationalError:
             print(sqlite3.OperationalError)
 
-    def modificarusuario (self, *args):
+    def modificarusuario (self, dato, datoNuevo, usuario):
 
             try:
-                self.dbcursor.execute("SELECT %s FROM integrador WHERE Usuario=?}", (args, self.usuario))
+                print(dato)
+                print(datoNuevo)
+                
+                print(f"UPDATE integrador SET {dato} VALUES {datoNuevo} WHERE Usuario={usuario}")
+                # print("Buscando ... ")
+                # print("Encontre ")
+                
+                # print("Actualizando por " + usuario)
+                print("antes de update ")
+                self.dbcursor.execute(f"UPDATE integrador SET {str(dato)}={str(datoNuevo)} WHERE Usuario={str(usuario)}")
+                #self.dbcursor.execute("UPDATE integrador SET Password=fran WHERE Usuario=fran")
+                #self.dbcursor.execute("UPDATE integrador SET Password VALUES frab WHERE Usuario=fran")
+                print("Desúes de update")
+                print(sqlite3.OperationalError)
+                self.dbcursor.execute(f"SELECT {dato} FROM integrador WHERE Usuario={usuario}")
                 self.db.commit()
                 busqueda = self.dbcursor.fetchone()
-                print("Buscando ... ")
-                print("Encontre ")
                 print(busqueda)
-                print("Actualizando por " + args)
-                sql = "UPDATE integrador SET %s VALUES (%s) WHERE %s=", (args , self.usuario)
-                self.db.execute(sql)
-                if busqueda is not None:
-                    self.dbcursor.execute("UPDATE integrador SET {self.variablemodificar} =? WHERE usuario =? AND password =?", (self.nuevodato,self.usuario,self.password))
-                    print("Modificacion realizada con exito.")
-                else:
-                    print("Convinación de usuario y contraseña incorrecta.")
             
             except sqlite3.OperationalError:
                 print(sqlite3.OperationalError)
                 print("Ingrese una convinación valida.")
-
+                pass
 
