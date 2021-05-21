@@ -18,11 +18,11 @@ class App:
         root.resizable(width=False, height=False)
 
 
-        GLabel_481=tk.Label(root)
-        GLabel_481["fg"] = "#333333"
-        GLabel_481["justify"] = "center"
-        GLabel_481["text"] = "label"
-        GLabel_481.place(x=160,y=460,width=171,height=30)
+        labelValida=tk.Label(root)
+        labelValida["fg"] = "#333333"
+        labelValida["justify"] = "center"
+        labelValida["text"] = "label"
+        labelValida.place(x=160,y=460,width=171,height=30)
 
         self.botonconsulta=tk.Button(root)
         self.botonconsulta["bg"] = "#fafafa"
@@ -48,13 +48,25 @@ class App:
         self.botonmodifica.place(x=230,y=100,width=70,height=25)
         self.botonmodifica["command"] = self.bmodifica
 
+        labelValida=tk.Label(root)
+        labelValida["fg"] = "#333333"
+        labelValida["justify"] = "center"
+        labelValida["text"] = "valida Usuario"
+        labelValida.place(x=10,y=30,width=171,height=30)
+
         self.validaEntry=tk.Entry(root)
         self.validaEntry["borderwidth"] = "1px"
         self.validaEntry["fg"] = "#333333"
         self.validaEntry["justify"] = "left"
         self.validaEntry["text"] = "Valida_entry"
         self.validaEntry["relief"] = "sunken"
-        self.validaEntry.place(x=90,y=200,width=141,height=30)
+        self.validaEntry.place(x=160,y=30,width=141,height=30)
+
+        labeldata=tk.Label(root)
+        labeldata["fg"] = "#333333"
+        labeldata["justify"] = "center"
+        labeldata["text"] = "Ingreso Data"
+        labeldata.place(x=10,y=60,width=171,height=30)
 
         self.dataEntry=tk.Entry(root)
         self.dataEntry["borderwidth"] = "1px"
@@ -62,49 +74,49 @@ class App:
         self.dataEntry["justify"] = "left"
         self.dataEntry["text"] = "data_entry"
         self.dataEntry["relief"] = "sunken"
-        self.dataEntry.place(x=90,y=60,width=141,height=30)
+        self.dataEntry.place(x=160,y=60,width=141,height=30)
 
         self.cbPassword=tk.Checkbutton(root)
         self.cbPassword["fg"] = "#333333"
-        self.cbPassword["justify"] = "center"
+        # self.cbPassword["justify"] = "right"
         self.cbPassword["text"] = "Password"
-        self.cbPassword.place(x=30,y=100,width=70,height=25)
+        self.cbPassword.place(x=40,y=140,width=90,height=25)
         self.cbPassword["offvalue"] = "0"
         self.cbPassword["onvalue"] = "1"
         self.cbPassword["command"] = self.bcbpassword
 
         self.cbNombre=tk.Checkbutton(root)
         self.cbNombre["fg"] = "#333333"
-        self.cbNombre["justify"] = "center"
+        # self.cbNombre["justify"] = "right"
         self.cbNombre["text"] = "nombre"
-        self.cbNombre.place(x=30,y=130,width=70,height=25)
+        self.cbNombre.place(x=40,y=170,width=90,height=25)
         self.cbNombre["offvalue"] = "0"
         self.cbNombre["onvalue"] = "1"
         self.cbNombre["command"] = self.bcbnombre
 
         self.cbApellido=tk.Checkbutton(root)
         self.cbApellido["fg"] = "#333333"
-        self.cbApellido["justify"] = "center"
+        # self.cbApellido["justify"] = "right"
         self.cbApellido["text"] = "Apellido"
-        self.cbApellido.place(x=30,y=160,width=70,height=25)
+        self.cbApellido.place(x=40,y=200,width=90,height=25)
         self.cbApellido["offvalue"] = "0"
         self.cbApellido["onvalue"] = "1"
         self.cbApellido["command"] = self.bcbapellido
 
         self.cbTelefono=tk.Checkbutton(root)
         self.cbTelefono["fg"] = "#333333"
-        self.cbTelefono["justify"] = "center"
+        # self.cbTelefono["justify"] = "right"
         self.cbTelefono["text"] = "Telefono"
-        self.cbTelefono.place(x=150,y=100,width=70,height=25)
+        self.cbTelefono.place(x=130,y=140,width=90,height=25)
         self.cbTelefono["offvalue"] = "0"
         self.cbTelefono["onvalue"] = "1"
         self.cbTelefono["command"] = self.bcbtelefono
 
         self.cbDNI=tk.Checkbutton(root)
         self.cbDNI["fg"] = "#333333"
-        self.cbDNI["justify"] = "center"
+        # self.cbDNI["justify"] = "right"
         self.cbDNI["text"] = "DNI"
-        self.cbDNI.place(x=150,y=130,width=70,height=25)
+        self.cbDNI.place(x=130,y=170,width=90,height=25)
         self.cbDNI["offvalue"] = "0"
         self.cbDNI["onvalue"] = "1"
         self.cbDNI["command"] = self.bcbdni
@@ -123,7 +135,8 @@ class App:
 
     def bcbpassword(self):
         OperacionDB().modificarusuario("Password",self.dataEntry.get(), self.validaEntry.get())
-      
+        print(self.dataEntry.get())
+        print(self.validaEntry.get())
 
 
     def bcbnombre(self):
@@ -144,7 +157,7 @@ class App:
     def bmodifica(self):
         print("command")
 
-# if __name__ == "__main__":
-#     root = tk.Tk()
-#     app = App(root)
-#     root.mainloop()
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = App(root)
+    root.mainloop()

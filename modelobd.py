@@ -80,8 +80,8 @@ class OperacionDB():
                 return True
             else:
                 print("hello mundo abajo false")
-        except sqlite3.OperationalError:
-            print(sqlite3.OperationalError)
+        except Exception as e:
+            print(e)
         
     def consultageneral(self, usuario):
         
@@ -98,27 +98,25 @@ class OperacionDB():
     def modificarusuario (self, dato, datoNuevo, usuario):
 
             try:
-                print(dato)
-                print(datoNuevo)
-                
+                print("dato ", str(dato))
+                print("Dato nuevo " , str(datoNuevo))
+                print("usuario " , str(usuario))
                 print(f"UPDATE integrador SET {dato} VALUES {datoNuevo} WHERE Usuario={usuario}")
                 # print("Buscando ... ")
                 # print("Encontre ")
                 
                 # print("Actualizando por " + usuario)
                 print("antes de update ")
-                self.dbcursor.execute(f"UPDATE integrador SET {str(dato)}={str(datoNuevo)} WHERE Usuario={str(usuario)}")
+                self.dbcursor.execute(f'UPDATE integrador SET {(dato)}={(datoNuevo)} WHERE Usuario={(usuario)}')
                 #self.dbcursor.execute("UPDATE integrador SET Password=fran WHERE Usuario=fran")
                 #self.dbcursor.execute("UPDATE integrador SET Password VALUES frab WHERE Usuario=fran")
                 print("Desúes de update")
-                print(sqlite3.OperationalError)
-                self.dbcursor.execute(f"SELECT {dato} FROM integrador WHERE Usuario={usuario}")
+                #print(sqlite3.OperationalError)
+                #self.dbcursor.execute(f"SELECT {dato} FROM integrador WHERE Usuario={usuario}")
                 self.db.commit()
                 busqueda = self.dbcursor.fetchone()
                 print(busqueda)
             
-            except sqlite3.OperationalError:
-                print(sqlite3.OperationalError)
-                print("Ingrese una convinación valida.")
-                pass
+            except Exception as e:
+                print(e)
 
