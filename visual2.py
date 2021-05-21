@@ -135,24 +135,22 @@ class App:
 
     def bcbpassword(self):
         OperacionDB().modificarusuario("Password",self.dataEntry.get(), self.validaEntry.get())
-        print(self.dataEntry.get())
-        print(self.validaEntry.get())
-
+  
 
     def bcbnombre(self):
-        print("command")
+        OperacionDB().modificarusuario("Nombre",self.dataEntry.get(), self.validaEntry.get())
 
 
     def bcbapellido(self):
-        print("command")
+        OperacionDB().modificarusuario("Apellido",self.dataEntry.get(), self.validaEntry.get())
 
 
     def bcbtelefono(self):
-        print("command")
+        OperacionDB().modificarusuario("Telefono",self.dataEntry.get(), self.validaEntry.get())
 
 
     def bcbdni(self):
-        print("command")
+       OperacionDB().modificarusuario("Dni",self.dataEntry.get(), self.validaEntry.get())
 
     def bmodifica(self):
         print("command")

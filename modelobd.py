@@ -98,25 +98,16 @@ class OperacionDB():
     def modificarusuario (self, dato, datoNuevo, usuario):
 
             try:
-                print("dato ", str(dato))
-                print("Dato nuevo " , str(datoNuevo))
-                print("usuario " , str(usuario))
-                print(f"UPDATE integrador SET {dato} VALUES {datoNuevo} WHERE Usuario={usuario}")
-                # print("Buscando ... ")
-                # print("Encontre ")
-                
-                # print("Actualizando por " + usuario)
-                print("antes de update ")
-                self.dbcursor.execute(f'UPDATE integrador SET {(dato)}={(datoNuevo)} WHERE Usuario={(usuario)}')
-                #self.dbcursor.execute("UPDATE integrador SET Password=fran WHERE Usuario=fran")
-                #self.dbcursor.execute("UPDATE integrador SET Password VALUES frab WHERE Usuario=fran")
-                print("Desúes de update")
-                #print(sqlite3.OperationalError)
-                #self.dbcursor.execute(f"SELECT {dato} FROM integrador WHERE Usuario={usuario}")
+       
+                self.dbcursor.execute(f"UPDATE integrador SET {dato}='{datoNuevo}' where Usuario='{usuario}'")
+                self.dbcursor.execute(f"SELECT * FROM integrador")
                 self.db.commit()
-                busqueda = self.dbcursor.fetchone()
-                print(busqueda)
+                print(type(usuario))
+                busqueda = self.dbcursor.fetchall()
+                for datos in busqueda:
+                    print(datos)
             
             except Exception as e:
                 print(e)
 
+OperacionDB().modificarusuario("Nombre","jeronimo","demo")
