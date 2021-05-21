@@ -110,4 +110,3 @@ class OperacionDB():
             except Exception as e:
                 print(e)
 
-OperacionDB().modificarusuario("Nombre","jeronimo","demo")
