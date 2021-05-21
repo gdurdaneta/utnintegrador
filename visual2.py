@@ -146,11 +146,11 @@ class App:
 
 
     def bcbtelefono(self):
-        OperacionDB().modificarusuario("Telefono",self.dataEntry.get(), self.validaEntry.get())
+        OperacionDB().modificarusuario("Telefono",int(self.dataEntry.get()), self.validaEntry.get())
 
 
     def bcbdni(self):
-       OperacionDB().modificarusuario("Dni",self.dataEntry.get(), self.validaEntry.get())
+        OperacionDB().modificarusuario("Dni",int(self.dataEntry.get()), self.validaEntry.get())
 
     def bmodifica(self):
         print("command")
