@@ -6,13 +6,15 @@ from modelobd import OperacionDB
 #Se crea clase para la visual de ventana de modificacion y la conexion con la base de datos.
 
 class App:
-
-    #Establece las variables basicas y la visual de la ventana.
-
+    """
+    Esta clase establece la visual de la ventana para modificar datos y la conexion con la base de datos.
+    """
     def __init__(self, root):
+        """
+        Establece valores de variables y la visual de la ventana de modificacion.
+        """
         #setting title
         root.title("Integrado!")
-        
         #setting window size
         width=335
         height=560
