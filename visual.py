@@ -7,11 +7,16 @@ import tkinter.font as tkFont
 from tkinter import messagebox
 #from PIL import ImageTk, Image
 import os
-
 from logica import logica
 
 class loginApp:
+    """
+    Se crea clase para la visual del login y sus componentes
+    """
     def __init__(self, root):
+        """
+        Se establecen valores de variables y configuracion de la visual del login.
+        """
         #setting title
         root.title("Integrador UTN")
         #setting window size
@@ -82,8 +87,12 @@ class loginApp:
         franciscomsg["text"] = "Francisco Bryndum"
         franciscomsg.place(x=140,y=400,width=150,height=30)
 
-
     def IngressBotton(self):
+        """
+        Metodo destinado para llamar a la funcion de modelobd.py, clase OperacionesDB / funcion ingresousuarios
+        Si esta OK, llama otra ventana y se destruye el login.
+        Caso contrario ventana de error.
+        """
         try:
             ingreso = OperacionDB().ingresousuarios((self.usuarioEntry.get()), (self.passwordEntry.get()))
             print(ingreso)
@@ -100,18 +109,30 @@ class loginApp:
             pass
 
     def CreateBotton(self):
+        """
+        Este metodo lo que hace es tomar la accion de destuir la ventana de login e iniciar la ventana de crear.
+        """
         rootlogin.destroy()
         root = tk.Tk()
         baseapp = baseApp(root)
         root.mainloop()
             
     def iniciar():
+        """
+        Este metodo lo que hace es iniciar la ventana loginApp.
+        """
         rootlogin = tk.Tk()
         app = loginApp(rootlogin)
         rootlogin.mainloop()
 
 class baseApp:
+    """
+    Clase para la ventana de creacion de usuarios. Se establecenvariables y la visual de la ventana.
+    """
     def __init__(self, root):
+        """
+        Configuracion de la visual de la ventana para creacion de usuarios.
+        """
         #setting title
         root.title("Integrador UTN")
         #setting window size
@@ -241,34 +262,36 @@ class baseApp:
         apellidoLabel["text"] = "Apellido"
         apellidoLabel.place(x=50,y=160,width=70,height=25)
         
- 
-
-
     def crearBotton_command(self):
+        """
+        Este metodo genera una lista con los entry de la ventana para crear usuarios.
+        Luego las utiliza para llamar la funcion de crear usuario en la clase OperacionDB.
+        Confirma la creacion o el error.
+        """
         #print(baseApp().listaEntry())
-        lista = [self.usuarioEntry.get(), self.passwordEntry.get(), self.nombreEntry.get(),
-                self.apellidoEntry.get(), self.dniEntry.get(), self.telefonoEntry.get()
-        ]
-        OperacionDB().creausuario(lista)
-        messagebox.showinfo(message="Usuario Creado Correctamente", title="Alerta!")
+        try:
+            lista = [self.usuarioEntry.get(), self.passwordEntry.get(), self.nombreEntry.get(),
+                    self.apellidoEntry.get(), self.dniEntry.get(), self.telefonoEntry.get()
+            ]
+            OperacionDB().creausuario(lista)
+            messagebox.showinfo(message="Usuario Creado Correctamente", title="Alerta!")
+        except:
+            messagebox.showinfo(message="Error, el usuario no se creo.", title="Alerta!")
         
-        
-
     # def eliminarBotton_command(self):
     #     OperacionDB().borrar(self.usuarioEntry.get(), self.passwordEntry.get())
     #     # messagebox.showinfo(message="Usuario Borrado", title="Alerta!!")
-
 
     # def consultarBotton_command(self):
     #     consulta = OperacionDB().consultageneral(self.usuarioEntry.get())
     #     messagebox.showinfo(message=consulta, title="Consulta")
     #     print(consulta)
 
-
     def modificarBotton_command(self):
+        """
+        Este modulo no hace nadaaaaaaaaaaaaaa
+        """
         pass
-    
-
 
 if __name__ == "__main__":
     rootlogin = tk.Tk()
