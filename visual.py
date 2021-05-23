@@ -7,10 +7,12 @@ import tkinter.font as tkFont
 from tkinter import messagebox
 #from PIL import ImageTk, Image
 import os
-
 from logica import logica
 
+#Se crea clase para la visual del login y sus componentes
+
 class loginApp:
+
     def __init__(self, root):
         #setting title
         root.title("Integrador UTN")
@@ -82,6 +84,7 @@ class loginApp:
         franciscomsg["text"] = "Francisco Bryndum"
         franciscomsg.place(x=140,y=400,width=150,height=30)
 
+#Funcion del boton de ingreso
 
     def IngressBotton(self):
         try:
@@ -99,6 +102,8 @@ class loginApp:
         except:
             pass
 
+#Funcion del boton crear
+
     def CreateBotton(self):
         rootlogin.destroy()
         root = tk.Tk()
@@ -109,6 +114,8 @@ class loginApp:
         rootlogin = tk.Tk()
         app = loginApp(rootlogin)
         rootlogin.mainloop()
+
+#Se crea clase para la visual del (CHEQUEAR QUE ES ESTA VENTANA) y sus componentes
 
 class baseApp:
     def __init__(self, root):
@@ -241,10 +248,7 @@ class baseApp:
         apellidoLabel["text"] = "Apellido"
         apellidoLabel.place(x=50,y=160,width=70,height=25)
         
- 
-
-
-    def crearBotton_command(self):
+     def crearBotton_command(self):
         #print(baseApp().listaEntry())
         lista = [self.usuarioEntry.get(), self.passwordEntry.get(), self.nombreEntry.get(),
                 self.apellidoEntry.get(), self.dniEntry.get(), self.telefonoEntry.get()
@@ -252,23 +256,17 @@ class baseApp:
         OperacionDB().creausuario(lista)
         messagebox.showinfo(message="Usuario Creado Correctamente", title="Alerta!")
         
-        
-
     # def eliminarBotton_command(self):
     #     OperacionDB().borrar(self.usuarioEntry.get(), self.passwordEntry.get())
     #     # messagebox.showinfo(message="Usuario Borrado", title="Alerta!!")
-
 
     # def consultarBotton_command(self):
     #     consulta = OperacionDB().consultageneral(self.usuarioEntry.get())
     #     messagebox.showinfo(message=consulta, title="Consulta")
     #     print(consulta)
 
-
     def modificarBotton_command(self):
         pass
-    
-
 
 if __name__ == "__main__":
     rootlogin = tk.Tk()

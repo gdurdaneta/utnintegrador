@@ -3,7 +3,12 @@ import tkinter.font as tkFont
 from tkinter import messagebox
 from modelobd import OperacionDB
 
+#Se crea clase para la visual de ventana de modificacion y la conexion con la base de datos.
+
 class App:
+
+    #Establece las variables basicas y la visual de la ventana.
+
     def __init__(self, root):
         #setting title
         root.title("Integrado!")
@@ -123,31 +128,40 @@ class App:
 
         #self.usuario = usuario
 
+    #Funcion que llama a la funcion consuta de las operaciones de base de datos.
+
     def bconsulta(self):
         print(self.usuario)
         consulta = OperacionDB().consultageneral(self.usuarioEntry.get())
         messagebox.showinfo(message=consulta, title="Consulta")
         print(consulta)
 
+    #Funcion que llama a la funcion eliminar de las operaciones de base de datos.
 
     def belimina(self):
         OperacionDB().borrar(self.usuarioEntry.get(), self.passwordEntry.get())
 
+    #Funcion que llama a la modicar password en las operaciones de base de datos.
+
     def bcbpassword(self):
         OperacionDB().modificarusuario("Password",self.dataEntry.get(), self.validaEntry.get())
   
-
+    #Funcion que llama a la modicar nombre en las operaciones de base de datos.
+    
     def bcbnombre(self):
         OperacionDB().modificarusuario("Nombre",self.dataEntry.get(), self.validaEntry.get())
 
+    #Funcion que llama a la modicar apellido en las operaciones de base de datos.
 
     def bcbapellido(self):
         OperacionDB().modificarusuario("Apellido",self.dataEntry.get(), self.validaEntry.get())
 
+    #Funcion que llama a la modicar telefono en las operaciones de base de datos.
 
     def bcbtelefono(self):
         OperacionDB().modificarusuario("Telefono",int(self.dataEntry.get()), self.validaEntry.get())
 
+    #Funcion que llama a la modicar dni en las operaciones de base de datos.
 
     def bcbdni(self):
         OperacionDB().modificarusuario("Dni",int(self.dataEntry.get()), self.validaEntry.get())
