@@ -96,9 +96,7 @@ class OperacionDB():
             print(sqlite3.OperationalError)
 
     def modificarusuario (self, dato, datoNuevo, usuario):
-
             try:
-       
                 self.dbcursor.execute(f"UPDATE integrador SET {dato}='{datoNuevo}' where Usuario='{usuario}'")
                 self.dbcursor.execute(f"SELECT * FROM integrador")
                 self.db.commit()

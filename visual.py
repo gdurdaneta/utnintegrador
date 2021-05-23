@@ -130,21 +130,21 @@ class baseApp:
         dniLabel["text"] = "DNI"
         dniLabel.place(x=50,y=200,width=70,height=25)
 
-        contultarBotton=tk.Button(root)
-        contultarBotton["bg"] = "#fafafa"
-        contultarBotton["fg"] = "#3d3d3d"
-        contultarBotton["justify"] = "center"
-        contultarBotton["text"] = "Consultar"
-        contultarBotton.place(x=250,y=300,width=70,height=25)
-        contultarBotton["command"] = self.consultarBotton_command
+        # contultarBotton=tk.Button(root)
+        # contultarBotton["bg"] = "#fafafa"
+        # contultarBotton["fg"] = "#3d3d3d"
+        # contultarBotton["justify"] = "center"
+        # contultarBotton["text"] = "Consultar"
+        # contultarBotton.place(x=250,y=300,width=70,height=25)
+        # contultarBotton["command"] = self.consultarBotton_command
 
-        eliminarBotton=tk.Button(root)
-        eliminarBotton["bg"] = "#fafafa"
-        eliminarBotton["fg"] = "#3d3d3d"
-        eliminarBotton["justify"] = "center"
-        eliminarBotton["text"] = "Eliminar"
-        eliminarBotton.place(x=170,y=300,width=70,height=25)
-        eliminarBotton["command"] = self.eliminarBotton_command
+        # eliminarBotton=tk.Button(root)
+        # eliminarBotton["bg"] = "#fafafa"
+        # eliminarBotton["fg"] = "#3d3d3d"
+        # eliminarBotton["justify"] = "center"
+        # eliminarBotton["text"] = "Eliminar"
+        # eliminarBotton.place(x=170,y=300,width=70,height=25)
+        # eliminarBotton["command"] = self.eliminarBotton_command
 
         self.apellidoEntry=tk.Entry(root)
         self.apellidoEntry["borderwidth"] = "1px"
@@ -170,13 +170,13 @@ class baseApp:
         crearBotton.place(x=10,y=300,width=70,height=25)
         crearBotton["command"] = self.crearBotton_command
 
-        modificarBotton=tk.Button(root)
-        modificarBotton["bg"] = "#fafafa"
-        modificarBotton["fg"] = "#3d3d3d"
-        modificarBotton["justify"] = "center"
-        modificarBotton["text"] = "Modificar"
-        modificarBotton.place(x=90,y=300,width=70,height=25)
-        modificarBotton["command"] = self.modificarBotton_command
+        # modificarBotton=tk.Button(root)
+        # modificarBotton["bg"] = "#fafafa"
+        # modificarBotton["fg"] = "#3d3d3d"
+        # modificarBotton["justify"] = "center"
+        # modificarBotton["text"] = "Modificar"
+        # modificarBotton.place(x=90,y=300,width=70,height=25)
+        # modificarBotton["command"] = self.modificarBotton_command
 
         nombreLabel=tk.Label(root)
         nombreLabel["fg"] = "#333333"
