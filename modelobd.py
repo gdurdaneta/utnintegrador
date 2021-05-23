@@ -1,15 +1,20 @@
 from typing import get_args
 from Logicapy import *
 from sqlite3.dbapi2 import Cursor, connect
-#from Logicapy import Logica
 import sqlite3
 
+#Clase para la operaciones de la base de datos.
+
 class OperacionDB():
+
+    #Se establece la conexion con la base de datos y el cursor. Se establece variable consulta.
 
     def __init__(self):
         self.db = sqlite3.connect("database.db")
         self.dbcursor = self.db.cursor()
         self.consulta = []
+
+    #Funcion que crea la base de datos y la tabla integrador.
 
     def crearbaseytabla(self):
         try:
@@ -26,6 +31,8 @@ class OperacionDB():
         finally:
             print("Base de datos conectada Correctamente")
 
+    #Funcion para la creacion de usuarios.
+
     def creausuario(self, lista):
 
         sql = """INSERT INTO integrador (Usuario, 
@@ -35,14 +42,13 @@ class OperacionDB():
                                         Dni, 
                                         Telefono) 
                                         VALUES (?, ?, ?, ?, ? ,?)"""
-        #self.db.cursor.execute(sql, args) 
-        #self.dbcursor.execute(sql, args)
         self.db.execute(sql, lista)
         self.db.commit()
-        
         self.db.close()
         
         print("\n Se ha creado el usuario.\n")
+
+    #Funcion para el borrado de usuarios donde coiincide usuario y password.
 
     def borrar(self, usuario, password):
         
@@ -56,17 +62,7 @@ class OperacionDB():
         except:
             ("Convinacion de usuario y contraseña invalido.")
 
-    def borrartodo(self):
-        ordenborrartodo = input("¿Seguro que quiere borrar todo? S/N: \n")
-        if ordenborrartodo == "S" or ordenborrartodo == "s":        
-            self.conexion(self.db, self.dbcursor)
-            self.dbcursor.execute("DROP TABLE usuarios")
-            self.db.close()
-            print("Base de datos eliminada.")
-        elif ordenborrartodo == "N" or ordenborrartodo == "n":
-            print("La base de datos no se elimino.")
-        else:
-            print("Ingreso invalido.")
+    #Funcion que consulta en la base de datos coincidencia de usuario y password.
 
     def ingresousuarios(self, usuario, password):
         try:
@@ -82,6 +78,8 @@ class OperacionDB():
                 print("hello mundo abajo false")
         except Exception as e:
             print(e)
+
+    #Funcion de consulta donde busca coinsidencia de usuario.
         
     def consultageneral(self, usuario):
         
@@ -95,17 +93,21 @@ class OperacionDB():
         except sqlite3.OperationalError:
             print(sqlite3.OperationalError)
 
+    #Funcion para la modificacion de usuarios a travez de entrys en codigo de visual2.py.
+
     def modificarusuario (self, dato, datoNuevo, usuario):
 
             try:
-       
-                self.dbcursor.execute(f"UPDATE integrador SET {dato}='{datoNuevo}' where Usuario='{usuario}'")
-                self.dbcursor.execute(f"SELECT * FROM integrador")
+                print("dato ", str(dato))
+                print("Dato nuevo " , str(datoNuevo))
+                print("usuario " , str(usuario))
+                print(f"UPDATE integrador SET {dato} VALUES {datoNuevo} WHERE Usuario={usuario}")
+                print("antes de update ")
+                self.dbcursor.execute(f'UPDATE integrador SET {dato} = {datoNuevo} WHERE Usuario = {usuario}')
+                print("Desúes de update")
                 self.db.commit()
-                print(type(usuario))
-                busqueda = self.dbcursor.fetchall()
-                for datos in busqueda:
-                    print(datos)
+                busqueda = self.dbcursor.fetchone()
+                print(busqueda)
             
             except Exception as e:
                 print(e)
