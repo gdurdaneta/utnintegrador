@@ -42,14 +42,6 @@ class App:
         self.botonelimina.place(x=230,y=130,width=70,height=25)
         self.botonelimina["command"] = self.belimina
 
-        self.botonmodifica=tk.Button(root)
-        self.botonmodifica["bg"] = "#fafafa"
-        self.botonmodifica["fg"] = "#3d3d3d"
-        self.botonmodifica["justify"] = "center"
-        self.botonmodifica["text"] = "Modificar"
-        self.botonmodifica.place(x=230,y=100,width=70,height=25)
-        self.botonmodifica["command"] = self.bmodifica
-
         labelValida=tk.Label(root)
         labelValida["fg"] = "#333333"
         labelValida["justify"] = "center"
@@ -188,9 +180,6 @@ class App:
             messagebox.showinfo(message=f"DNI de {self.validaEntry.get()} modificado.", title="Modificación")
         except:
             messagebox.showinfo(message="Error en el cambio de DNI.", title="Error.")
-
-    def bmodifica(self):
-        print("command")
 
 if __name__ == "__main__":
     root = tk.Tk()

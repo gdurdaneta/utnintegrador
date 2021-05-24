@@ -1,11 +1,9 @@
-
 from visual2 import App
 from modelobd import OperacionDB
 import sqlite3
 import tkinter as tk
 import tkinter.font as tkFont
 from tkinter import messagebox
-#from PIL import ImageTk, Image
 import os
 from logica import logica
 
@@ -71,9 +69,6 @@ class loginApp:
         self.passwordEntry["justify"] = "center"
         self.passwordEntry["text"] = "Password Entry"
         self.passwordEntry.place(x=140,y=200,width=100,height=25)
-
-        #logo = Imagetk.PhotoImage(Image.open("logo.gif"))
-        #slogo.place(x=120,y=150,width=100,height=25)
 
         urdantemsg=tk.Label(root)
         urdantemsg["justify"] = "right"

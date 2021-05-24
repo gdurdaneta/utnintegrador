@@ -19,19 +19,14 @@ class OperacionDB():
         """
         Funcion que crea la base de datos y la tabla integrador.
         """
-        try:
-            self.dbcursor.execute('''CREATE TABLE integrador (Usuario VARCHAR(10) NOT NULL UNIQUE, 
-                                                            Password VARCHAR(10) NOT NULL, 
-                                                            Nombre VARCHAR(20) NOT NULL, 
-                                                            Apellido VARCHAR(20) NOT NULL, 
-                                                            Dni INTENGER(10) NOT NULL, 
-                                                            Telefono INTEGER(10) NOT NULL)''')
-            self.db.commit()
-            self.db.close()
-        except sqlite3.OperationalError:
-            print(sqlite3.OperationalError)
-        finally:
-            print("Base de datos conectada Correctamente")
+        self.dbcursor.execute('''CREATE TABLE integrador (Usuario VARCHAR(10) NOT NULL UNIQUE, 
+                                                        Password VARCHAR(10) NOT NULL, 
+                                                        Nombre VARCHAR(20) NOT NULL, 
+                                                        Apellido VARCHAR(20) NOT NULL, 
+                                                        Dni INTENGER(10) NOT NULL, 
+                                                        Telefono INTEGER(10) NOT NULL)''')
+        self.db.commit()
+        self.db.close()
 
     def creausuario(self, lista):
         """
