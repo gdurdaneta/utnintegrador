@@ -3,8 +3,6 @@ import tkinter.font as tkFont
 from tkinter import messagebox
 from modelobd import OperacionDB
 
-#Se crea clase para la visual de ventana de modificacion y la conexion con la base de datos.
-
 class App:
     """
     Esta clase establece la visual de la ventana para modificar datos y la conexion con la base de datos.
@@ -13,9 +11,7 @@ class App:
         """
         Establece valores de variables y la visual de la ventana de modificacion.
         """
-        #setting title
         root.title("Integrado!")
-        #setting window size
         width=335
         height=560
         screenwidth = root.winfo_screenwidth()
@@ -23,7 +19,6 @@ class App:
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
-
 
         labelValida=tk.Label(root)
         labelValida["fg"] = "#333333"
@@ -58,7 +53,7 @@ class App:
         labelValida=tk.Label(root)
         labelValida["fg"] = "#333333"
         labelValida["justify"] = "center"
-        labelValida["text"] = "valida Usuario"
+        labelValida["text"] = "Usuario:"
         labelValida.place(x=10,y=30,width=171,height=30)
 
         self.validaEntry=tk.Entry(root)
@@ -72,7 +67,7 @@ class App:
         labeldata=tk.Label(root)
         labeldata["fg"] = "#333333"
         labeldata["justify"] = "center"
-        labeldata["text"] = "Ingreso Data"
+        labeldata["text"] = "Ingreso Data:"
         labeldata.place(x=10,y=60,width=171,height=30)
 
         self.dataEntry=tk.Entry(root)
@@ -85,7 +80,6 @@ class App:
 
         self.cbPassword=tk.Checkbutton(root)
         self.cbPassword["fg"] = "#333333"
-        # self.cbPassword["justify"] = "right"
         self.cbPassword["text"] = "Password"
         self.cbPassword.place(x=40,y=140,width=90,height=25)
         self.cbPassword["offvalue"] = "0"
@@ -94,8 +88,7 @@ class App:
 
         self.cbNombre=tk.Checkbutton(root)
         self.cbNombre["fg"] = "#333333"
-        # self.cbNombre["justify"] = "right"
-        self.cbNombre["text"] = "nombre"
+        self.cbNombre["text"] = "Nombre"
         self.cbNombre.place(x=40,y=170,width=90,height=25)
         self.cbNombre["offvalue"] = "0"
         self.cbNombre["onvalue"] = "1"
@@ -103,7 +96,6 @@ class App:
 
         self.cbApellido=tk.Checkbutton(root)
         self.cbApellido["fg"] = "#333333"
-        # self.cbApellido["justify"] = "right"
         self.cbApellido["text"] = "Apellido"
         self.cbApellido.place(x=40,y=200,width=90,height=25)
         self.cbApellido["offvalue"] = "0"
@@ -112,7 +104,6 @@ class App:
 
         self.cbTelefono=tk.Checkbutton(root)
         self.cbTelefono["fg"] = "#333333"
-        # self.cbTelefono["justify"] = "right"
         self.cbTelefono["text"] = "Telefono"
         self.cbTelefono.place(x=130,y=140,width=90,height=25)
         self.cbTelefono["offvalue"] = "0"
@@ -121,52 +112,82 @@ class App:
 
         self.cbDNI=tk.Checkbutton(root)
         self.cbDNI["fg"] = "#333333"
-        # self.cbDNI["justify"] = "right"
         self.cbDNI["text"] = "DNI"
         self.cbDNI.place(x=130,y=170,width=90,height=25)
         self.cbDNI["offvalue"] = "0"
         self.cbDNI["onvalue"] = "1"
         self.cbDNI["command"] = self.bcbdni
 
-        #self.usuario = usuario
-
-    #Funcion que llama a la funcion consuta de las operaciones de base de datos.
-
     def bconsulta(self):
-        print(self.usuario)
-        consulta = OperacionDB().consultageneral(self.usuarioEntry.get())
-        messagebox.showinfo(message=consulta, title="Consulta")
-        print(consulta)
-
-    #Funcion que llama a la funcion eliminar de las operaciones de base de datos.
-
+        """
+        Metodo para llamar la clase OperacionDB / metodo: Consulta y le ingresa el dato de usuario.
+        """
+        #print(self.usuario)
+        try:
+            consulta = OperacionDB().consultageneral(self.validaEntry.get())
+            messagebox.showinfo(message=consulta, title="Consulta")
+        except:
+            messagebox.showinfo(message="Usuario no encontrado!", title="Error.")
     def belimina(self):
-        OperacionDB().borrar(self.usuarioEntry.get(), self.passwordEntry.get())
-
-    #Funcion que llama a la modicar password en las operaciones de base de datos.
+        """
+        Metodo para eliminar usuarios a traves del ingreso del usuario y el password.
+        """
+        try:
+            OperacionDB().borrar(self.validaEntry.get(), self.dataEntry.get())
+            messagebox.showinfo(message="Usuario borrado correctamente.", title="Borrado exitoso.")
+        except:
+            messagebox.showinfo(message="Error!.", title="Error!")
 
     def bcbpassword(self):
-        OperacionDB().modificarusuario("Password",self.dataEntry.get(), self.validaEntry.get())
-  
-    #Funcion que llama a la modicar nombre en las operaciones de base de datos.
-    
-    def bcbnombre(self):
-        OperacionDB().modificarusuario("Nombre",self.dataEntry.get(), self.validaEntry.get())
+        """
+        Metodo para modificar las password de un usuario en la base de datos.
+        """
+        try:
+            OperacionDB().modificarusuario("Password",self.dataEntry.get(), self.validaEntry.get())
+            messagebox.showinfo(message=f"Password de {self.validaEntry.get()} modificado.", title="Modificación")
+        except:
+            messagebox.showinfo(message="Error en el cambio de password.", title="Error.")
 
-    #Funcion que llama a la modicar apellido en las operaciones de base de datos.
+    def bcbnombre(self):
+        """
+        Metodo para modificar el nombre de un usuario en la base de datos.
+        """
+        try:
+            OperacionDB().modificarusuario("Nombre",self.dataEntry.get(), self.validaEntry.get())
+            messagebox.showinfo(message=f"Nombre de {self.validaEntry.get()} modificado.", title="Modificación")
+        except:
+            messagebox.showinfo(message="Error en el cambio de nombre.", title="Error.")
 
     def bcbapellido(self):
-        OperacionDB().modificarusuario("Apellido",self.dataEntry.get(), self.validaEntry.get())
-
-    #Funcion que llama a la modicar telefono en las operaciones de base de datos.
+        """
+        Metodo para modificar el apellido de un usuario en la base de datos.
+        """
+        try:
+            OperacionDB().modificarusuario("Apellido",self.dataEntry.get(), self.validaEntry.get())
+            messagebox.showinfo(message=f"Apellido de {self.validaEntry.get()} modificado.", title="Modificación")
+        except:
+            messagebox.showinfo(message="Error en el cambio de password.", title="Error.")
 
     def bcbtelefono(self):
-        OperacionDB().modificarusuario("Telefono",int(self.dataEntry.get()), self.validaEntry.get())
-
-    #Funcion que llama a la modicar dni en las operaciones de base de datos.
+        """
+        Metodo para modificar el telefono de un usuario en la base de datos.
+        """
+        try:
+        
+            OperacionDB().modificarusuario("Telefono",int(self.dataEntry.get()), self.validaEntry.get())
+            messagebox.showinfo(message=f"Telefono de {self.validaEntry.get()} modificado.", title="Modificación")
+        except:
+            messagebox.showinfo(message="Error en el cambio de telefono.", title="Error.")
 
     def bcbdni(self):
-        OperacionDB().modificarusuario("Dni",int(self.dataEntry.get()), self.validaEntry.get())
+        """
+        Metodo para modificar el dni de un usuario en la base de datos.
+        """
+        try:
+            OperacionDB().modificarusuario("Dni",int(self.dataEntry.get()), self.validaEntry.get())
+            messagebox.showinfo(message=f"DNI de {self.validaEntry.get()} modificado.", title="Modificación")
+        except:
+            messagebox.showinfo(message="Error en el cambio de DNI.", title="Error.")
 
     def bmodifica(self):
         print("command")

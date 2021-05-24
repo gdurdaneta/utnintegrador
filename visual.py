@@ -17,9 +17,7 @@ class loginApp:
         """
         Se establecen valores de variables y configuracion de la visual del login.
         """
-        #setting title
         root.title("Integrador UTN")
-        #setting window size
         width=335
         height=560
         screenwidth = root.winfo_screenwidth()
@@ -74,8 +72,8 @@ class loginApp:
         self.passwordEntry["text"] = "Password Entry"
         self.passwordEntry.place(x=140,y=200,width=100,height=25)
 
-        # logo = Imagetk.PhotoImage(Image.open("logo.gif"))
-        # logo.place(x=120,y=150,width=100,height=25)
+        #logo = Imagetk.PhotoImage(Image.open("logo.gif"))
+        #slogo.place(x=120,y=150,width=100,height=25)
 
         urdantemsg=tk.Label(root)
         urdantemsg["justify"] = "right"
@@ -95,16 +93,13 @@ class loginApp:
         """
         try:
             ingreso = OperacionDB().ingresousuarios((self.usuarioEntry.get()), (self.passwordEntry.get()))
-            print(ingreso)
             if ingreso == True:
-                print("despues de operaciones en visual") 
                 rootlogin.destroy()
                 root = tk.Tk()    
                 baseapp = App(root)
                 root.mainloop()
-
             else:
-                print("Ingreso Invalido Cartelito")
+                messagebox.showinfo(message="Combinación de usuario y password incorrecta!", title="Acceso denegado.")
         except:
             pass
 
@@ -127,15 +122,13 @@ class loginApp:
 
 class baseApp:
     """
-    Clase para la ventana de creacion de usuarios. Se establecenvariables y la visual de la ventana.
+    Clase para la ventana de creacion de usuarios. Se establecen variables y la visual de la ventana.
     """
     def __init__(self, root):
         """
         Configuracion de la visual de la ventana para creacion de usuarios.
         """
-        #setting title
         root.title("Integrador UTN")
-        #setting window size
         width=335
         height=560
         screenwidth = root.winfo_screenwidth()
@@ -150,22 +143,6 @@ class baseApp:
         dniLabel["justify"] = "center"
         dniLabel["text"] = "DNI"
         dniLabel.place(x=50,y=200,width=70,height=25)
-
-        # contultarBotton=tk.Button(root)
-        # contultarBotton["bg"] = "#fafafa"
-        # contultarBotton["fg"] = "#3d3d3d"
-        # contultarBotton["justify"] = "center"
-        # contultarBotton["text"] = "Consultar"
-        # contultarBotton.place(x=250,y=300,width=70,height=25)
-        # contultarBotton["command"] = self.consultarBotton_command
-
-        # eliminarBotton=tk.Button(root)
-        # eliminarBotton["bg"] = "#fafafa"
-        # eliminarBotton["fg"] = "#3d3d3d"
-        # eliminarBotton["justify"] = "center"
-        # eliminarBotton["text"] = "Eliminar"
-        # eliminarBotton.place(x=170,y=300,width=70,height=25)
-        # eliminarBotton["command"] = self.eliminarBotton_command
 
         self.apellidoEntry=tk.Entry(root)
         self.apellidoEntry["borderwidth"] = "1px"
@@ -190,14 +167,6 @@ class baseApp:
         crearBotton["text"] = "Crear"
         crearBotton.place(x=10,y=300,width=70,height=25)
         crearBotton["command"] = self.crearBotton_command
-
-        # modificarBotton=tk.Button(root)
-        # modificarBotton["bg"] = "#fafafa"
-        # modificarBotton["fg"] = "#3d3d3d"
-        # modificarBotton["justify"] = "center"
-        # modificarBotton["text"] = "Modificar"
-        # modificarBotton.place(x=90,y=300,width=70,height=25)
-        # modificarBotton["command"] = self.modificarBotton_command
 
         nombreLabel=tk.Label(root)
         nombreLabel["fg"] = "#333333"
@@ -268,7 +237,6 @@ class baseApp:
         Luego las utiliza para llamar la funcion de crear usuario en la clase OperacionDB.
         Confirma la creacion o el error.
         """
-        #print(baseApp().listaEntry())
         try:
             lista = [self.usuarioEntry.get(), self.passwordEntry.get(), self.nombreEntry.get(),
                     self.apellidoEntry.get(), self.dniEntry.get(), self.telefonoEntry.get()
@@ -278,21 +246,6 @@ class baseApp:
         except:
             messagebox.showinfo(message="Error, el usuario no se creo.", title="Alerta!")
         
-    # def eliminarBotton_command(self):
-    #     OperacionDB().borrar(self.usuarioEntry.get(), self.passwordEntry.get())
-    #     # messagebox.showinfo(message="Usuario Borrado", title="Alerta!!")
-
-    # def consultarBotton_command(self):
-    #     consulta = OperacionDB().consultageneral(self.usuarioEntry.get())
-    #     messagebox.showinfo(message=consulta, title="Consulta")
-    #     print(consulta)
-
-    def modificarBotton_command(self):
-        """
-        Este modulo no hace nadaaaaaaaaaaaaaa
-        """
-        pass
-
 if __name__ == "__main__":
     rootlogin = tk.Tk()
     app = loginApp(rootlogin)

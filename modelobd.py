@@ -48,86 +48,39 @@ class OperacionDB():
         self.db.commit()
         self.db.close()
         
-        print("\n Se ha creado el usuario.\n")
-
     def borrar(self, usuario, password):
         """
         Metodo para el borrado de usuarios previa coincidencia de usuario y password.
         """
-        
-        try:
-            print(usuario, password)
-            self.dbcursor.execute("DELETE FROM integrador WHERE Usuario =? and Password =?",(usuario, password,))
-            self.db.commit()
-            self.db.close()
-            print(self.dbcursor.rowcount)
-            print("Borrado exitoso.")
-        except:
-            ("Convinacion de usuario y contraseña invalido.")
+        self.dbcursor.execute("DELETE FROM integrador WHERE Usuario =? and Password =?",(usuario, password,))
+        self.db.commit()
+        self.db.close()
+        print(self.dbcursor.rowcount)
 
     def ingresousuarios(self, usuario, password):
         """
         Metodo que consulta en la base de datos una coincidencia unica de usuario y password.
         """
-        try:
-            self.dbcursor.execute("SELECT nombre FROM integrador WHERE Usuario=? AND Password =?", (usuario, password))
-            self.db.commit()
-            busqueda = self.dbcursor.fetchone()
-            print((busqueda))
-            if busqueda is not None:
-                print("Haz ingresado a la base de datos.")
-                self.dbcursor.close()
-                return True
-            else:
-                print("hello mundo abajo false")
-        except Exception as e:
-            print(e)
+        self.dbcursor.execute("SELECT nombre FROM integrador WHERE Usuario=? AND Password =?", (usuario, password))
+        self.db.commit()
+        busqueda = self.dbcursor.fetchone()
+        if busqueda is not None:
+            self.dbcursor.close()
+            return True
 
-   
     def consultageneral(self, usuario):
         """
         Metodo que busca una coincidendia de usuario en la base de datos.
         """
-        try:
-            self.dbcursor.execute("SELECT * FROM integrador WHERE Usuario=?", (usuario,))
-            tabla = self.dbcursor.fetchone()
-            for datos in tabla:
-                self.consulta.append(datos)
-            self.dbcursor.close()
-            return self.consulta
-        except sqlite3.OperationalError:
-            print(sqlite3.OperationalError)
+        self.dbcursor.execute("SELECT * FROM integrador WHERE Usuario=?", (usuario,))
+        tabla = self.dbcursor.fetchone()
+        return tabla
 
     def modificarusuario (self, dato, datoNuevo, usuario):
-<<<<<<< HEAD
-            try:
-                self.dbcursor.execute(f"UPDATE integrador SET {dato}='{datoNuevo}' where Usuario='{usuario}'")
-                self.dbcursor.execute(f"SELECT * FROM integrador")
-                self.db.commit()
-                print(type(usuario))
-                busqueda = self.dbcursor.fetchall()
-                for datos in busqueda:
-                    print(datos)
             
-            except Exception as e:
-                print(e)
-=======
-        """
-        Metodo para modificar datos de usuarios a traves de los entry en codigo de visual2.py.
-        """
-        try:
-            print("dato ", str(dato))
-            print("Dato nuevo " , str(datoNuevo))
-            print("usuario " , str(usuario))
-            print(f"UPDATE integrador SET {dato} VALUES {datoNuevo} WHERE Usuario={usuario}")
-            print("antes de update ")
-            self.dbcursor.execute(f'UPDATE integrador SET {dato} = {datoNuevo} WHERE Usuario = {usuario}')
-            print("Desúes de update")
-            self.db.commit()
-            busqueda = self.dbcursor.fetchone()
-            print(busqueda)
-        
-        except Exception as e:
-            print(e)
->>>>>>> 039b61dcf140015bfa9a9a89a879e1d7e8bc52bc
+        self.dbcursor.execute(f"UPDATE integrador SET {dato}='{datoNuevo}' where Usuario='{usuario}'")
+        self.dbcursor.execute(f"SELECT * FROM integrador")
+        self.db.commit()
+
+
 
