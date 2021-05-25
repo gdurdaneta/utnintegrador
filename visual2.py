@@ -120,6 +120,7 @@ class App:
             messagebox.showinfo(message=consulta, title="Consulta")
         except:
             messagebox.showinfo(message="Usuario no encontrado!", title="Error.")
+            
     def belimina(self):
         """
         Metodo para eliminar usuarios a traves del ingreso del usuario y el password.
