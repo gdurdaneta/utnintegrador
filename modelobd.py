@@ -1,7 +1,6 @@
-from typing import get_args
-from Logicapy import *
-from sqlite3.dbapi2 import Cursor, connect
+
 import sqlite3
+from sqlite3.dbapi2 import Error
 
 class OperacionDB():
     """
@@ -19,14 +18,19 @@ class OperacionDB():
         """
         Funcion que crea la base de datos y la tabla integrador.
         """
-        self.dbcursor.execute('''CREATE TABLE integrador (Usuario VARCHAR(10) NOT NULL UNIQUE, 
-                                                        Password VARCHAR(10) NOT NULL, 
-                                                        Nombre VARCHAR(20) NOT NULL, 
-                                                        Apellido VARCHAR(20) NOT NULL, 
-                                                        Dni INTENGER(10) NOT NULL, 
-                                                        Telefono INTEGER(10) NOT NULL)''')
-        self.db.commit()
-        self.db.close()
+        try:
+            self.dbcursor.execute('''CREATE TABLE integrador (Usuario VARCHAR(10) NOT NULL UNIQUE, 
+                                                            Password VARCHAR(10) NOT NULL, 
+                                                            Nombre VARCHAR(20) NOT NULL, 
+                                                            Apellido VARCHAR(20) NOT NULL, 
+                                                            Dni INTENGER(10) NOT NULL, 
+                                                            Telefono INTEGER(10) NOT NULL)''')
+            self.db.commit()
+            self.db.close()
+        except Error as e:
+            print(e)
+        finally:
+            print("base de datos creada correctamente")
 
     def creausuario(self, lista):
         """
@@ -78,4 +82,4 @@ class OperacionDB():
         self.db.commit()
 
 
-
+OperacionDB().crearbaseytabla()

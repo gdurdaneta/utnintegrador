@@ -1,5 +1,4 @@
 import tkinter as tk
-import tkinter.font as tkFont
 from tkinter import messagebox
 from modelobd import OperacionDB
 

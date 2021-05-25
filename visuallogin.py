@@ -1,11 +1,10 @@
-from visual2 import App
+from visualbase import App
 from modelobd import OperacionDB
-import sqlite3
 import tkinter as tk
 import tkinter.font as tkFont
 from tkinter import messagebox
-import os
-from logica import logica
+import re
+
 
 class loginApp:
     """
@@ -232,14 +231,29 @@ class baseApp:
         Luego las utiliza para llamar la funcion de crear usuario en la clase OperacionDB.
         Confirma la creacion o el error.
         """
-        try:
-            lista = [self.usuarioEntry.get(), self.passwordEntry.get(), self.nombreEntry.get(),
-                    self.apellidoEntry.get(), self.dniEntry.get(), self.telefonoEntry.get()
-            ]
-            OperacionDB().creausuario(lista)
-            messagebox.showinfo(message="Usuario Creado Correctamente", title="Alerta!")
-        except:
-            messagebox.showinfo(message="Error, el usuario no se creo.", title="Alerta!")
+        
+        patron = re.compile(r'''(
+                            ^(?=.*[A-Z])
+                            (?=.*[a-z])
+                            (?=.*[0-9])
+                            (?=.*[!@#$%&])
+                            .{8,}
+                            $
+                            )''', re.VERBOSE)
+
+        if patron.search(self.passwordEntry.get()) == True:
+                
+            try:
+                lista = [self.usuarioEntry.get(), self.passwordEntry.get(), self.nombreEntry.get(),
+                        self.apellidoEntry.get(), self.dniEntry.get(), self.telefonoEntry.get()
+                ]
+                OperacionDB().creausuario(lista)
+                messagebox.showinfo(message="Usuario Creado Correctamente", title="Alerta!")
+            except:
+                messagebox.showinfo(message="Error, el usuario no se creo.", title="Alerta!")
+        else:
+            messagebox.showerror(message="La contraseña no cumple con los requisitos", title="Alerta")
+            messagebox.showerror(message="La contraseña debe tener 8 caracteres, Mayusculas y minusculas", title="Alerta")
         
 if __name__ == "__main__":
     rootlogin = tk.Tk()
