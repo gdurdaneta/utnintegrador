@@ -234,7 +234,7 @@ class baseApp:
                             $
                             )''', re.VERBOSE)
 
-        if patron.search(self.passwordEntry.get()) == True:
+        if re.match(patron,self.passwordEntry.get()):
                 
             try:
                 lista = [self.usuarioEntry.get(), self.passwordEntry.get(), self.nombreEntry.get(),
