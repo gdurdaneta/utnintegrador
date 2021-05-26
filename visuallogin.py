@@ -106,13 +106,6 @@ class loginApp:
         baseapp = baseApp(root)
         root.mainloop()
             
-    def iniciar():
-        """
-        Este metodo lo que hace es iniciar la ventana loginApp.
-        """
-        rootlogin = tk.Tk()
-        app = loginApp(rootlogin)
-        rootlogin.mainloop()
 
 class baseApp:
     """
@@ -236,7 +229,7 @@ class baseApp:
                             ^(?=.*[A-Z])
                             (?=.*[a-z])
                             (?=.*[0-9])
-                            (?=.*[!@#$%&])
+                            (?=.*[.!@#$%&])
                             .{8,}
                             $
                             )''', re.VERBOSE)
@@ -252,8 +245,9 @@ class baseApp:
             except:
                 messagebox.showinfo(message="Error, el usuario no se creo.", title="Alerta!")
         else:
-            messagebox.showerror(message="La contraseña no cumple con los requisitos", title="Alerta")
-            messagebox.showerror(message="La contraseña debe tener 8 caracteres, Mayusculas y minusculas", title="Alerta")
+            messagebox.showerror(message="La contraseña no cumple con los requisitos.", title="Alerta")
+            messagebox.showerror(message="La contraseña debe tener 8 caracteres, Mayusculas y minusculas.", title="Alerta")
+            messagebox.showerror(message="La contraseña debe tener signos especiales: !@#$%&.", title="Alerta")
         
 if __name__ == "__main__":
     rootlogin = tk.Tk()

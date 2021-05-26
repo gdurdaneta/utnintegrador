@@ -27,10 +27,8 @@ class OperacionDB():
                                                             Telefono INTEGER(10) NOT NULL)''')
             self.db.commit()
             self.db.close()
-        except Error as e:
-            print(e)
-        finally:
-            print("base de datos creada correctamente")
+        except:
+            pass
 
     def creausuario(self, lista):
         """

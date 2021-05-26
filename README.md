@@ -1,6 +1,6 @@
 # utnintegrador
 
-Esta aplicacion esta desarrollada en 3 ventanas.
+Esta aplicacion fue desarrollada en 3 ventanas por Gerardo Urdaneta y Francisco Bryndum.
 
 En el archivo visuallogin.py estan las ventanas de login (class loginApp) y la ventana para la creacion de usuarios (class baseApp). Luego esta el archivo visualbase.py donde esta la ventana para las operaciones dentro de la base de datos (class App) como: modificar, eliminar y consultar data. 
 

@@ -181,7 +181,9 @@ class App:
         except:
             messagebox.showinfo(message="Error en el cambio de DNI.", title="Error.")
 
+"""
 if __name__ == "__main__":
     root = tk.Tk()
     app = App(root)
     root.mainloop()
+"""
