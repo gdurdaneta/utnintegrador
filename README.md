@@ -2,9 +2,9 @@
 
 Esta aplicacion esta desarrollada en 3 ventanas.
 
-En el archivo visual.py estan las ventanas de login (class loginApp) y la ventana para la creacion de usuarios (class baseApp). Luego esta el archivo visual2.py donde esta la ventana para las operaciones dentro de la base de datos (class App) como: modificar, eliminar y consultar data. 
+En el archivo visuallogin.py estan las ventanas de login (class loginApp) y la ventana para la creacion de usuarios (class baseApp). Luego esta el archivo visualbase.py donde esta la ventana para las operaciones dentro de la base de datos (class App) como: modificar, eliminar y consultar data. 
 
-El programa inicia del archivo visual.py donde existen 2 opciones:
+El programa inicia del archivo visuallogin.py donde existen 2 opciones:
 
 - Ingresar: previa validacion de un usuario y contraseña que sean validadas por la base de datos lo que nos permite el acceso a la ventana de operaciones de base de datos.
 
